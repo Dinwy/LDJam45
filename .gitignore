@@ -1,0 +1,56 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+.vs/
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# ===== #
+# Debug #
+# ===== #
+01-*.png
+02-*.png
+03-*.png
+
+# ===== #
+# Assets #
+# ===== #
+**/TextMesh Pro/
+**/AmplifyShaderEditor/
+**/AmplifyShaderEditor.meta
+**/Lightmap*.*
+**/LightingData.*
+**/ReflectionProbe*.*
+
+## Allegorithmic
+Assets/Allegorithmic
+Allegorithmic.meta
