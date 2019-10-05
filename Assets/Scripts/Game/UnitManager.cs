@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-using DG.Tweening;
-
 namespace LDJam45.Game
 {
 	public class UnitManager : MonoBehaviour, IUnitAction

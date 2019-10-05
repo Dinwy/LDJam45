@@ -34,8 +34,8 @@ namespace LDJam45.Game
 			// Setup Managers
 			MapManager.Setup(this);
 			UserManager.Setup(this);
+			DialogManager.Setup(this);
 
-			DialogManager.UpdateDialog("Game has been started");
 			OnStageChange?.Invoke(this, GameState.Initialize);
 
 			Setup();
@@ -50,6 +50,11 @@ namespace LDJam45.Game
 		public void Callback(GameState state)
 		{
 			OnStageChange?.Invoke(this, state);
+		}
+
+		public void CheckRoom()
+		{
+
 		}
 
 		void LateUpdate()
