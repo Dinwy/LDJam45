@@ -40,6 +40,9 @@ namespace LDJam45.Game
 				case GameState.BattleBegin:
 					UpdateDialog("Enemy exsits in the room! Battle begins");
 					break;
+				case GameState.BattleFinished:
+					UpdateDialog("Enemy exsits in the room! Battle Finished!");
+					break;
 				default:
 					break;
 			}

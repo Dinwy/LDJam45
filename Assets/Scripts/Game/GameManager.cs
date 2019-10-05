@@ -19,6 +19,7 @@ namespace LDJam45.Game
 		public DialogManager DialogManager;
 		public DebugManager DebugManager;
 		public UserManager UserManager;
+		public RuleManager RuleManager;
 
 		public event EventHandler<GameState> OnStageChange;
 
@@ -35,6 +36,7 @@ namespace LDJam45.Game
 			MapManager.Setup(this);
 			UserManager.Setup(this);
 			DialogManager.Setup(this);
+			RuleManager.Setup(this);
 
 			OnStageChange?.Invoke(this, GameState.Initialize);
 

@@ -10,7 +10,7 @@ namespace LDJam45.Game
 		public string Name;
 		public string Description;
 		public Sprite Artwork;
-		public CardType CardType;
+		public TargetType CardType;
 		public AttackType AttackType;
 		public int Damage;
 		public sbyte Priority;

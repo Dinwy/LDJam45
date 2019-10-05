@@ -57,6 +57,11 @@ namespace LDJam45.Game
 			return roomInfos[currentPosition].RoomData.Units.Length > 0;
 		}
 
+		public List<GameObject> GetAllEnemies()
+		{
+			return roomInfos[currentPosition].UnitGameObject;
+		}
+
 		private void OnStageChange(object sender, GameState e)
 		{
 			switch (e)

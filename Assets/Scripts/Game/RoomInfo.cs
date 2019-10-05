@@ -1,10 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 namespace LDJam45.Game
 {
@@ -12,6 +9,8 @@ namespace LDJam45.Game
 	{
 		public GameObject UnitPrefab;
 		public RoomData RoomData;
+
+		public List<GameObject> UnitGameObject = new List<GameObject>();
 
 		public void Setup()
 		{
@@ -23,6 +22,8 @@ namespace LDJam45.Game
 			um.UnitData = RoomData.Units[0];
 			um.Setup();
 			go.name = um.ID.ToString();
+
+			UnitGameObject.Add(go);
 		}
 	}
 }

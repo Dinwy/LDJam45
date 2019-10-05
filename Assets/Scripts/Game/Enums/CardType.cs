@@ -1,8 +1,9 @@
 namespace LDJam45.Game
 {
-	public enum CardType
+	public enum TargetType
 	{
 		Self,
+		SelfAll,
 		Opponent,
 		OpponenAll,
 	}
