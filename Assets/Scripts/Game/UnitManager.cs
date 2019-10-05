@@ -16,11 +16,22 @@ namespace LDJam45.Game
 
 		public event EventHandler<Card> OnCardDraw;
 		public event EventHandler OnAttack;// Need to change arg to Card
-
+		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
 
 		public Guid ID { get; private set; }
 		public int HP { get; private set; }
+		public bool IsDead
+		{
+			get
+			{
+				return this.HP <= 0;
+			}
+			private set
+			{
+				IsDead = value;
+			}
+		}
 
 		public void Setup()
 		{
@@ -63,7 +74,16 @@ namespace LDJam45.Game
 		public void GetDamage(int damage)
 		{
 			this.HP -= damage;
-			OnGetDamage?.Invoke(this, damage);
+
+			// Tigger when unit died
+			if (!IsDead)
+			{
+				OnGetDamage?.Invoke(this, damage);
+			}
+			else if (IsDead)
+			{
+				OnUnitDied?.Invoke(this, EventArgs.Empty);
+			}
 		}
 	}
 }

@@ -10,6 +10,7 @@ namespace LDJam45.Game
 {
 	public class UnitUI : MonoBehaviour
 	{
+		public Canvas Canvas;
 		public Slider Slider;
 		public TextMeshProUGUI HP;
 		public TextMeshProUGUI NameText;
@@ -38,6 +39,7 @@ namespace LDJam45.Game
 			UnitManager.OnCardDraw += OnCardDraw;
 			UnitManager.OnAttack += OnAttack;
 			UnitManager.OnGetDamage += OnGetDamage;
+			UnitManager.OnUnitDied += OnUnitDied;
 		}
 
 		private void OnCardDraw(object sender, Card card)
@@ -51,6 +53,24 @@ namespace LDJam45.Game
 		private void OnAttack(object sender, EventArgs e)
 		{
 
+		}
+
+		private void OnUnitDied(object sender, EventArgs e)
+		{
+			Debug.Log("UnitDied");
+
+			var sequence = DOTween.Sequence();
+
+			// 
+			DOTween.To(() => Canvas.GetComponent<CanvasGroup>().alpha, x => Canvas.GetComponent<CanvasGroup>().alpha = x, 0, 1f);
+			GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 1f);
+			sequence.AppendInterval(1f);
+
+			sequence.AppendCallback(() =>
+			{
+				gameObject.SetActive(false);
+				Debug.LogWarning($"[{this.GetType().Name}] Unit died");
+			});
 		}
 
 		private void OnGetDamage(object sender, int damage)

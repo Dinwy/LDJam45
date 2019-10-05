@@ -7,5 +7,7 @@ namespace LDJam45.Game
 		InitializeFinished,
 		MoveToRoom,
 		MoveToRoomFinished,
+		BattleBegin,
+		BattleFinished,
 	}
 }

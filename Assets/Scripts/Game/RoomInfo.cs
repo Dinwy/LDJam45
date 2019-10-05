@@ -11,7 +11,7 @@ namespace LDJam45.Game
 	public class RoomInfo : MonoBehaviour
 	{
 		public GameObject UnitPrefab;
-		public Room Room;
+		public RoomData Room;
 
 		public void Setup()
 		{
