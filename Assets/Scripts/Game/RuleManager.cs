@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -49,19 +50,26 @@ namespace LDJam45.Game
 					gameManager.Callback(GameState.EnemyTurnStart);
 					break;
 				case GameState.EnemyTurnStart:
-					await Task.Delay(1000);
-
-					foreach (var enemy in enemies)
-					{
-						enemy.GetComponent<UnitManager>()?.Draw();
-						enemy.GetComponent<UnitManager>().UseCardToPlayer(gameManager.UserManager.PlayerUnitManager);
-					}
+					StartCoroutine(EnemyLogic());
 					break;
 				case GameState.BattleFinished:
 					Debug.Log("BattleFinished");
 					break;
 				default:
 					break;
+			}
+		}
+
+		private IEnumerator EnemyLogic()
+		{
+			yield return new WaitForSeconds(1f);
+
+			var enemies = gameManager.MapManager.GetAllEnemies();
+
+			foreach (var enemy in enemies)
+			{
+				enemy.GetComponent<UnitManager>()?.Draw();
+				enemy.GetComponent<UnitManager>().UseCardToPlayer(gameManager.UserManager.PlayerUnitManager);
 			}
 		}
 
