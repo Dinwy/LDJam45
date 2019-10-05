@@ -22,6 +22,7 @@ namespace LDJam45.Game
 			var um = go.GetComponent<UnitManager>();
 			um.UnitData = Room.Units[0];
 			um.Setup();
+			go.name = um.ID.ToString();
 		}
 	}
 }

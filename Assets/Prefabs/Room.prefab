@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1047003370580609906}
   - component: {fileID: 4096852804411062789}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3417496507527083140}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8020685955980483095
 MeshFilter:
@@ -214,8 +214,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2624428712926642555}
   - {fileID: 2684366685061167399}
+  - {fileID: 2624428712926642555}
   - {fileID: 5083110126169478793}
   - {fileID: 1396956607843951576}
   - {fileID: 1131507226144787505}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1368232592909231286}
   - component: {fileID: 2587156528032784113}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3417496507527083140}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &4905594459064737428
 MeshFilter:

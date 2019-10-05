@@ -15,10 +15,24 @@ namespace LDJam45.Game
 		public Stack<Card> Deck = new Stack<Card>();
 
 		public event EventHandler<Card> OnCardDraw;
+		public event EventHandler OnAttack;// Need to change arg to Card
+
+		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
+
+		public Guid ID { get; private set; }
+		public int HP { get; private set; }
 
 		public void Setup()
 		{
+			if (UnitData == null)
+			{
+				Debug.Log($"[{this.GetType().Name}] Unit data is null!");
+				return;
+			}
+
 			Debug.Log("Setup Unit Manager");
+			ID = Guid.NewGuid();
+			HP = UnitData.HP;
 			UnitUI.Setup(this);
 		}
 
@@ -43,7 +57,13 @@ namespace LDJam45.Game
 
 		public void Attack(UnitManager unit)
 		{
-			unit.UnitData.HP -= 10;
+			OnAttack?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void GetDamage(int damage)
+		{
+			this.HP -= damage;
+			OnGetDamage?.Invoke(this, damage);
 		}
 	}
 }

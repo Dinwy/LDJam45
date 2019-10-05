@@ -26,11 +26,19 @@ namespace LDJam45.Game
 		public void RegisterEvents()
 		{
 			UnitManager.OnCardDraw += OnCardDraw;
+			UnitManager.OnGetDamage += OnGetDamage;
+
 		}
 
 		private void OnCardDraw(object sender, Card card)
 		{
+			Debug.Log($"[{this.GetType().Name}: Draw a card");
+		}
 
+		private void OnGetDamage(object sender, int damage)
+		{
+			Debug.Log($"[{this.GetType().Name}] Getting {damage} damage!");
+			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
 		}
 	}
 }
