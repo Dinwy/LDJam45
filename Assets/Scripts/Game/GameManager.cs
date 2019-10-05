@@ -12,6 +12,9 @@ namespace LDJam45.Game
 		public GameObject DebugPanel;
 		public Button MoveNext;
 
+		[Header("Managers")]
+		public MapManager MapManager;
+
 		private GameObject player;
 
 		void Start()

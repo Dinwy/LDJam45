@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 namespace LDJam45.Game
 {
-	public class Card : ICard
+	public class MapManager : MonoBehaviour, IManager
 	{
+		public void Setup()
+		{
+			Debug.LogWarning("Setup");
+		}
 	}
 }
