@@ -17,11 +17,13 @@ namespace LDJam45.Game
 		[Header("Prefabs")]
 		public GameObject RoomPrefab;
 		private Vector3 roomPos = Vector3.zero;
+		public float roomDistance { get; set; } = 10f;
 
 		private List<RoomInfo> roomInfos = new List<RoomInfo>();
 		private int currentPosition = 0;
 
 		private GameManager gameManager;
+
 
 		public void Setup(GameManager gm)
 		{

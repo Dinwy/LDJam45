@@ -17,6 +17,5 @@ namespace LDJam45.Game
 
 		public List<Card> Hand { get; private set; }
 		public Stack<Card> Deck { get; private set; }
-
 	}
 }

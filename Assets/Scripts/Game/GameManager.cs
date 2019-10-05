@@ -14,67 +14,47 @@ namespace LDJam45.Game
 		public Camera MainCamera;
 		public Camera SubCamera;
 
-		[Header("GameObjects")]
-		public GameObject PlayerPrefab;
-		public GameObject DebugPanel;
-		public Button MoveNext;
-
 		[Header("Managers")]
 		public MapManager MapManager;
 		public DialogManager DialogManager;
+		public DebugManager DebugManager;
+		public UserManager UserManager;
+
 		public event EventHandler<GameState> OnStageChange;
 
 		[Header("Settings")]
 		public GameMode GameMode;
 
-		private GameObject player;
 		private Vector3 offset;
-
-		private bool animating = false;
 
 		void Start()
 		{
 			Debug.LogWarning("Start game");
-			Setup();
 
 			// Setup Managers
 			MapManager.Setup(this);
-
-			MoveNext.onClick.AddListener(() =>
-			{
-				if (animating)
-				{
-					Debug.LogWarning("don't move");
-
-					return;
-				}
-
-				Debug.LogWarning("Move");
-				animating = true;
-				var seq = player.GetComponent<UnitManager>().MoveToNextRoom();
-				seq.OnComplete(() =>
-				{
-					animating = false;
-					OnStageChange?.Invoke(this, GameState.MoveToRoomFinished);
-				});
-
-				// Trigger event
-				OnStageChange?.Invoke(this, GameState.MoveToRoom);
-			});
+			DebugManager.Setup(this);
+			UserManager.Setup(this);
 
 			DialogManager.UpdateDialog("Game has been started");
+			OnStageChange?.Invoke(this, GameState.Initialize);
+
+			Setup();
 		}
 
 		void Setup()
 		{
-			player = GameObject.Instantiate(PlayerPrefab, new Vector3(0, 1f, 0), Quaternion.identity);
-			player.GetComponent<UnitManager>().Setup(this);
-			offset = MainCamera.transform.position - player.transform.position;
+			offset = MainCamera.transform.position - UserManager.PlayerUnit.transform.position;
+		}
+
+		public void Callback(GameState state)
+		{
+			OnStageChange?.Invoke(this, state);
 		}
 
 		void LateUpdate()
 		{
-			MainCamera.transform.position = player.transform.position + offset;
+			MainCamera.transform.position = UserManager.PlayerUnit.transform.position + offset;
 		}
 	}
 }

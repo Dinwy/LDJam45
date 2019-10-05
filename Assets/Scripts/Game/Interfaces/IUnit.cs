@@ -10,5 +10,8 @@ namespace LDJam45.Game
 		int Damage { get; }
 		List<Card> Hand { get; }
 		Stack<Card> Deck { get; }
+
+		void Draw();
+		void Use();
 	}
 }
