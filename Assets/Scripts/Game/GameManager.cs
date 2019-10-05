@@ -14,6 +14,7 @@ namespace LDJam45.Game
 
 		[Header("Managers")]
 		public MapManager MapManager;
+		public DialogManager DialogManager;
 
 		private GameObject player;
 
@@ -27,6 +28,8 @@ namespace LDJam45.Game
 				Debug.Log("moveX");
 				player.GetComponent<UnitManager>().MoveX();
 			});
+
+			DialogManager.UpdateDialog("Game has been started");
 		}
 
 		void Setup()
