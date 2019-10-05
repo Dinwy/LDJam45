@@ -13,6 +13,7 @@ namespace LDJam45.Game
 
 		public Guid ID { get; private set; }
 		public GameObject PlayerUnit { get; private set; }
+		public UnitManager PlayerUnitManager { get; set; }
 		private GameManager gameManager { get; set; }
 
 		public UserManager()
@@ -39,7 +40,8 @@ namespace LDJam45.Game
 			{
 				case GameState.Initialize:
 					PlayerUnit = GameObject.Instantiate(UnitPrefab, new Vector3(-3f, 1f, 0), Quaternion.identity);
-					PlayerUnit.GetComponent<UnitManager>().Setup();
+					PlayerUnitManager = PlayerUnit.GetComponent<UnitManager>();
+					PlayerUnitManager.Setup();
 					break;
 				default:
 					break;

@@ -696,6 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: da6eb12e725307d4a9ecfc596b284d11, type: 2}
   UnitUI: {fileID: 1871593252}
+  Hands: []
 --- !u!114 &1871593252
 MonoBehaviour:
   m_ObjectHideFlags: 0

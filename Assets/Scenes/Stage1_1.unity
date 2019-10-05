@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 292996654}
   - component: {fileID: 292996656}
   - component: {fileID: 292996657}
+  - component: {fileID: 292996658}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -322,8 +323,8 @@ MonoBehaviour:
   SubCamera: {fileID: 0}
   MapManager: {fileID: 292996656}
   DialogManager: {fileID: 556658422}
-  DebugManager: {fileID: 0}
-  UserManager: {fileID: 0}
+  DebugManager: {fileID: 292996657}
+  UserManager: {fileID: 292996658}
   GameMode: 0
 --- !u!4 &292996655
 Transform:
@@ -370,6 +371,22 @@ MonoBehaviour:
   MoveNext: {fileID: 606556004}
   GiveMockDeck: {fileID: 1102429483}
   Draw: {fileID: 373726182}
+  MockCardList: {fileID: 11400000, guid: b83dc43fd69158c42bffb15df4358998, type: 2}
+--- !u!114 &292996658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292996653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80b34ac8a2a3094bba409a46b0413b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitPrefab: {fileID: 6408289200809505817, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2,
+    type: 3}
+  UserType: 0
 --- !u!1001 &348171103
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ namespace LDJam45.Game
 		public Unit unit;
 		public UnitUI UnitUI;
 
+		public List<Card> Hands = new List<Card>();
+		public Stack<Card> Deck = new Stack<Card>();
+
 		public void Setup()
 		{
 			Debug.Log("Setup Unit Manager");

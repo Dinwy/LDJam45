@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,9 @@ namespace LDJam45.Game
 		public Button GiveMockDeck;
 		public Button Draw;
 
+		[Header("Card Data")]
+		public MockCardList MockCardList;
+
 		private GameManager gameManager { get; set; }
 		private bool animating = false;
 
@@ -23,47 +28,47 @@ namespace LDJam45.Game
 
 			Debug.Log("Setup Debug Manager");
 
-			GiveMockDeck.onClick.AddListener(() =>
-					{
-						if (animating)
-						{
-							Debug.Log("Attacking");
-							return;
-						}
-
-						Debug.Log("Attack the enemy");
-					});
+			GiveMockDeck.onClick.AddListener(GiveMockDeckToUser);
 
 			Draw.onClick.AddListener(() => { });
 
-			MoveNext.onClick.AddListener(() =>
+			MoveNext.onClick.AddListener(MoveToNextRoom);
+		}
+
+		private void MoveToNextRoom()
+		{
+			if (animating)
 			{
-				if (animating)
-				{
-					Debug.LogWarning("don't move");
+				Debug.LogWarning("don't move");
 
-					return;
-				}
+				return;
+			}
 
-				Debug.LogWarning("Move");
-				animating = true;
+			Debug.LogWarning("Move");
+			animating = true;
 
-				var seq = gameManager.UserManager.MoveToNextRoom();
-				seq.OnComplete(() =>
-				{
-					animating = false;
-					gameManager.Callback(GameState.MoveToRoomFinished);
-				});
-
-				// Trigger event
-				gameManager.Callback(GameState.MoveToRoom);
+			var seq = gameManager.UserManager.MoveToNextRoom();
+			seq.OnComplete(() =>
+			{
+				animating = false;
+				gameManager.Callback(GameState.MoveToRoomFinished);
 			});
+
+			// Trigger event
+			gameManager.Callback(GameState.MoveToRoom);
+		}
+
+
+		private void GiveMockDeckToUser()
+		{
+			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<Card>(MockCardList.CardList);
+			Debug.Log("Mock list has been given");
+			Debug.Log($"{gameManager.UserManager.PlayerUnitManager.Deck.Count}");
 		}
 
 		void OnFinished()
 		{
 
 		}
-
 	}
 }
