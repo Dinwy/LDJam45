@@ -869,6 +869,8 @@ MonoBehaviour:
   Slider: {fileID: 679286726}
   HP: {fileID: 813392093}
   NameText: {fileID: 2016451450}
+  CardPrefab: {fileID: 2216626934016985029, guid: 83e6275852d8df94d892cb9ebd8e2c53,
+    type: 3}
 --- !u!65 &39802292955418396
 BoxCollider:
   m_ObjectHideFlags: 0
