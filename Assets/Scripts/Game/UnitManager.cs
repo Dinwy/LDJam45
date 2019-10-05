@@ -19,8 +19,13 @@ namespace LDJam45.Game
 		{
 			GameManager = gm;
 
-			Debug.Log("meow");
-			UnitUI.Setup(this);
+			Debug.Log("Setup Unit Manager");
+			SetupUI(this.unit);
+		}
+
+		public void SetupUI(Unit unit)
+		{
+			UnitUI.Setup(unit);
 		}
 
 		public Sequence MoveToNextRoom()

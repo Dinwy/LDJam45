@@ -24,6 +24,9 @@ namespace LDJam45.Game
 		public DialogManager DialogManager;
 		public event EventHandler<GameState> OnStageChange;
 
+		[Header("Settings")]
+		public GameMode GameMode;
+
 		private GameObject player;
 		private Vector3 offset;
 
@@ -52,10 +55,11 @@ namespace LDJam45.Game
 				seq.OnComplete(() =>
 				{
 					animating = false;
+					OnStageChange?.Invoke(this, GameState.MoveToRoomFinished);
 				});
 
 				// Trigger event
-				OnStageChange?.Invoke(this, GameState.MoveToOtherRoom);
+				OnStageChange?.Invoke(this, GameState.MoveToRoom);
 			});
 
 			DialogManager.UpdateDialog("Game has been started");
