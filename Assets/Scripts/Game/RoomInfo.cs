@@ -11,7 +11,7 @@ namespace LDJam45.Game
 	public class RoomInfo : MonoBehaviour
 	{
 		public GameObject UnitPrefab;
-		public RoomData Room;
+		public RoomData RoomData;
 
 		public void Setup()
 		{
@@ -20,7 +20,7 @@ namespace LDJam45.Game
 			go.transform.SetParent(this.transform);
 
 			var um = go.GetComponent<UnitManager>();
-			um.UnitData = Room.Units[0];
+			um.UnitData = RoomData.Units[0];
 			um.Setup();
 			go.name = um.ID.ToString();
 		}

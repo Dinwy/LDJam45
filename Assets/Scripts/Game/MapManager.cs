@@ -51,6 +51,12 @@ namespace LDJam45.Game
 			room.transform.SetParent(Map.transform);
 		}
 
+		public bool DoesEnemyExists()
+		{
+			if (currentPosition >= roomInfos.Count) return false;
+			return roomInfos[currentPosition].RoomData.Units.Length > 0;
+		}
+
 		private void OnStageChange(object sender, GameState e)
 		{
 			switch (e)

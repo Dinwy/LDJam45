@@ -35,6 +35,10 @@ namespace LDJam45.Game
 					break;
 				case GameState.MoveToRoomFinished:
 					UpdateDialog("Finished moving to another room");
+					gameManager.CheckRoom();
+					break;
+				case GameState.BattleBegin:
+					UpdateDialog("Enemy exsits in the room! Battle begins");
 					break;
 				default:
 					break;

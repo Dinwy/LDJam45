@@ -54,7 +54,10 @@ namespace LDJam45.Game
 
 		public void CheckRoom()
 		{
-
+			if (MapManager.DoesEnemyExists())
+			{
+				OnStageChange?.Invoke(this, GameState.BattleBegin);
+			}
 		}
 
 		void LateUpdate()
