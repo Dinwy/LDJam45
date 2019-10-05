@@ -59,9 +59,14 @@ namespace LDJam45.Game
 			OnCardDraw?.Invoke(this, card);
 		}
 
-		public void Use()
+		public void UseCardToPlayer(UnitManager target)
 		{
-
+			if (Hands[0] != null)
+			{
+				var card = Hands[0];
+				target.GetDamage(card.Damage);
+				OnAttack?.Invoke(this, EventArgs.Empty);
+			}
 		}
 
 		public void Attack(UnitManager unit)
@@ -80,6 +85,7 @@ namespace LDJam45.Game
 			}
 			else if (IsDead)
 			{
+				OnGetDamage?.Invoke(this, damage);
 				OnUnitDied?.Invoke(this, EventArgs.Empty);
 			}
 		}

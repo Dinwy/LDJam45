@@ -18,6 +18,7 @@ namespace LDJam45.Game
 
 		[Header("Card Data")]
 		public MockCardList MockCardList;
+		public MockCardList MockCardList_Lamia;
 
 		private GameManager gameManager { get; set; }
 		private bool animating = false;

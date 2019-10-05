@@ -56,8 +56,15 @@ namespace LDJam45.Game
 				return;
 			}
 
-			GameObject.Find(TargetGuid).GetComponent<UnitManager>()?.GetDamage(10);
+			GameObject.Find(TargetGuid).GetComponent<UnitManager>()?.GetDamage(30);
+
+			var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+			gameManager.Callback(GameState.PlayerTurnEnd);
+
+			GameObject.Find("HandArea").GetComponent<HandAreaManager>().Sort();
 			Debug.Log(TargetGuid);
+
+			Destroy(gameObject);
 		}
 
 		void MakeItBillboard()

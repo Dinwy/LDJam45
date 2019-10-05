@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using DG.Tweening;
 using TMPro;
@@ -25,15 +26,35 @@ namespace LDJam45.Game
 			RegisterEvnets();
 		}
 
-		private void OnStageChange(object sender, GameState gs)
+		private async void OnStageChange(object sender, GameState gs)
 		{
+			var enemies = gameManager.MapManager.GetAllEnemies();
+
 			switch (gs)
 			{
 				case GameState.BattleBegin:
-					var enemies = gameManager.MapManager.GetAllEnemies();
 					foreach (var enemy in enemies)
 					{
 						enemy.transform.SetParent(EnemyFields.transform);
+						enemy.GetComponent<UnitManager>().Deck = new Stack<Card>(gameManager.DebugManager.MockCardList_Lamia.CardList);
+					}
+
+					// Force changing state
+					gameManager.Callback(GameState.PlayerTurnStart);
+					break;
+				case GameState.PlayerTurnStart:
+					gameManager.UserManager.PlayerUnitManager.Draw();
+					break;
+				case GameState.PlayerTurnEnd:
+					gameManager.Callback(GameState.EnemyTurnStart);
+					break;
+				case GameState.EnemyTurnStart:
+					await Task.Delay(1000);
+
+					foreach (var enemy in enemies)
+					{
+						enemy.GetComponent<UnitManager>()?.Draw();
+						enemy.GetComponent<UnitManager>().UseCardToPlayer(gameManager.UserManager.PlayerUnitManager);
 					}
 					break;
 				case GameState.BattleFinished:

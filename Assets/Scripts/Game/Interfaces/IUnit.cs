@@ -6,6 +6,5 @@ namespace LDJam45.Game
 	public interface IUnitAction
 	{
 		void Draw();
-		void Use();
 	}
 }
