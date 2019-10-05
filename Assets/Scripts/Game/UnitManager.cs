@@ -6,22 +6,28 @@ using DG.Tweening;
 
 namespace LDJam45.Game
 {
-	public class UnitManager : MonoBehaviour
+	public class UnitManager : MonoBehaviour, IManager
 	{
 		public Unit unit;
 		public UnitUI UnitUI;
 
-		void Start()
+		public GameManager GameManager { get; private set; }
+
+		private const float roomDistance = 10f;
+
+		public void Setup(GameManager gm)
 		{
+			GameManager = gm;
+
 			Debug.Log("meow");
 			UnitUI.Setup(this);
 		}
 
-		public void MoveX()
+		public Sequence MoveToNextRoom()
 		{
 			var seq = DOTween.Sequence();
-
-			gameObject.transform.DOMoveX(transform.position.x + 1, 2f);
+			seq.Append(gameObject.transform.DOMoveX(transform.position.x + roomDistance, 2f));
+			return seq;
 		}
 	}
 }

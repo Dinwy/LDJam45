@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0289b3937a26d347b2e80c4d445d37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 1370951195}
+  SubCamera: {fileID: 0}
   PlayerPrefab: {fileID: 6408289200809505817, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2,
     type: 3}
   DebugPanel: {fileID: 193362960}
@@ -347,6 +349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0c320005c724c41b1a8775ebd864ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Map: {fileID: 1801236414}
+  RoomPrefab: {fileID: 2245804293528753101, guid: 0f8db6cd406711242b839a9f020b68ec,
+    type: 3}
 --- !u!224 &556658419 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2590936273321056727, guid: 3dbc2463545907f4bbfd8f93d2e08e9b,
@@ -873,7 +878,7 @@ PrefabInstance:
     - target: {fileID: 6408289200809505817, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6408289200809505819, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2,
         type: 3}
@@ -932,11 +937,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309533337, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1309533337, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27c26ac80ef17b247ab3a24c8d4fa2f2, type: 3}

@@ -5,6 +5,6 @@ namespace LDJam45.Game
 {
 	public interface IManager
 	{
-		void Setup();
+		void Setup(GameManager gm);
 	}
 }
