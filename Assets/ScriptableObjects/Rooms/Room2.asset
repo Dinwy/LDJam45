@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: TestRoom
   Description: Basic Room with Lamia
   Units:
-  - {fileID: 11400000, guid: b0994515d6930d3409f71d95987edb3f, type: 2}
+  - {fileID: 11400000, guid: 0b238b6064f032445815320ae944d856, type: 2}

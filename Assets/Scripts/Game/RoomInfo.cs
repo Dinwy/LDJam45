@@ -19,7 +19,9 @@ namespace LDJam45.Game
 			var go = GameObject.Instantiate(UnitPrefab, pos, Quaternion.identity);
 			go.transform.SetParent(this.transform);
 
-			UnitPrefab.GetComponent<UnitManager>().SetupUI(Room.Units[0]);
+			var um = go.GetComponent<UnitManager>();
+			um.UnitData = Room.Units[0];
+			um.Setup();
 		}
 	}
 }

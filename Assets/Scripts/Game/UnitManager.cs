@@ -8,21 +8,18 @@ namespace LDJam45.Game
 {
 	public class UnitManager : MonoBehaviour, IUnitAction
 	{
-		public Unit unit;
+		public UnitData UnitData;
 		public UnitUI UnitUI;
 
 		public List<Card> Hands = new List<Card>();
 		public Stack<Card> Deck = new Stack<Card>();
 
+		public event EventHandler<Card> OnCardDraw;
+
 		public void Setup()
 		{
 			Debug.Log("Setup Unit Manager");
-			SetupUI(unit);
-		}
-
-		public void SetupUI(Unit unit)
-		{
-			UnitUI.Setup(unit);
+			UnitUI.Setup(this);
 		}
 
 		public void Draw()
@@ -36,6 +33,7 @@ namespace LDJam45.Game
 			var card = Deck.Pop();
 			Hands.Add(card);
 			Debug.Log($"Card added: {card.Name}, {Hands.Count}");
+			OnCardDraw?.Invoke(this, card);
 		}
 
 		public void Use()
@@ -43,9 +41,9 @@ namespace LDJam45.Game
 
 		}
 
-		public void Attack(Unit unit)
+		public void Attack(UnitManager unit)
 		{
-			unit.HP -= 10;
+			unit.UnitData.HP -= 10;
 		}
 	}
 }

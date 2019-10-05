@@ -24,7 +24,6 @@ namespace LDJam45.Game
 
 		private GameManager gameManager;
 
-
 		public void Setup(GameManager gm)
 		{
 			gameManager = gm;

@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d91b697a12cb34abbc1b50cf61e787, type: 3}
+  m_Script: {fileID: 11500000, guid: 46fc523ea65e1794cae8eceb9cec2578, type: 3}
   m_Name: MainCharacter
   m_EditorClassIdentifier: 
   Name: Hero
   HP: 100
   Damage: 10
-  Description: 
+  Description: Hero
   Artwork: {fileID: 21300000, guid: c1b97619f55c782488f9a29777e8d8ad, type: 3}
   Priority: 0

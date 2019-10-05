@@ -13,10 +13,24 @@ namespace LDJam45.Game
 		public Slider Slider;
 		public TextMeshProUGUI NameText;
 
-		public void Setup(Unit unit)
+		public UnitManager UnitManager { get; private set; }
+
+		public void Setup(UnitManager um)
 		{
-			NameText.text = unit.Name;
-			GetComponent<SpriteRenderer>().sprite = unit.Artwork;
+			UnitManager = um;
+			NameText.text = um.UnitData.Name;
+			GetComponent<SpriteRenderer>().sprite = um.UnitData.Artwork;
+			RegisterEvents();
+		}
+
+		public void RegisterEvents()
+		{
+			UnitManager.OnCardDraw += OnCardDraw;
+		}
+
+		private void OnCardDraw(object sender, Card card)
+		{
+
 		}
 	}
 }
