@@ -34,7 +34,7 @@ namespace LDJam45.Game
 
 		void Setup()
 		{
-			player = GameObject.Instantiate(PlayerPrefab, new Vector3(0, 0.5f, 0), Quaternion.identity);
+			player = GameObject.Instantiate(PlayerPrefab, new Vector3(0, 1f, 0), Quaternion.identity);
 		}
 	}
 }

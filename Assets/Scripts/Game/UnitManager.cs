@@ -9,11 +9,12 @@ namespace LDJam45.Game
 	public class UnitManager : MonoBehaviour
 	{
 		public Unit unit;
+		public UnitUI UnitUI;
 
 		void Start()
 		{
 			Debug.Log("meow");
-			GetComponent<SpriteRenderer>().sprite = unit.Artwork;
+			UnitUI.Setup(this);
 		}
 
 		public void MoveX()

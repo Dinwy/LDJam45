@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d91b697a12cb34abbc1b50cf61e787, type: 3}
   m_Name: MainCharacter
   m_EditorClassIdentifier: 
-  Name: MainCharacter
+  Name: Hero
   HP: 100
   Damage: 10
   Description: 
