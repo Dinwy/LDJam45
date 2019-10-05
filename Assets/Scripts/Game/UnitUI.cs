@@ -11,6 +11,7 @@ namespace LDJam45.Game
 	public class UnitUI : MonoBehaviour
 	{
 		public Slider Slider;
+		public TextMeshProUGUI HP;
 		public TextMeshProUGUI NameText;
 
 		public UnitManager UnitManager { get; private set; }
@@ -19,6 +20,7 @@ namespace LDJam45.Game
 		{
 			UnitManager = um;
 			NameText.text = um.UnitData.Name;
+			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
 			GetComponent<SpriteRenderer>().sprite = um.UnitData.Artwork;
 			RegisterEvents();
 		}
@@ -26,8 +28,8 @@ namespace LDJam45.Game
 		public void RegisterEvents()
 		{
 			UnitManager.OnCardDraw += OnCardDraw;
+			UnitManager.OnAttack += OnAttack;
 			UnitManager.OnGetDamage += OnGetDamage;
-
 		}
 
 		private void OnCardDraw(object sender, Card card)
@@ -35,10 +37,17 @@ namespace LDJam45.Game
 			Debug.Log($"[{this.GetType().Name}: Draw a card");
 		}
 
+		private void OnAttack(object sender, EventArgs e)
+		{
+
+		}
+
 		private void OnGetDamage(object sender, int damage)
 		{
 			Debug.Log($"[{this.GetType().Name}] Getting {damage} damage!");
 			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
+			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
+			this.transform.DOShakePosition(0.5f, 0.5f, damage);
 		}
 	}
 }
