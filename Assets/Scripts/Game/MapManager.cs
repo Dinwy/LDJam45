@@ -29,6 +29,7 @@ namespace LDJam45.Game
 		{
 			gameManager = gm;
 			Debug.LogWarning("Setup");
+
 			gm.OnStageChange += OnStageChange;
 
 			if (gm.GameMode == GameMode.Campaign)

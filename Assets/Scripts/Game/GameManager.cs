@@ -33,7 +33,6 @@ namespace LDJam45.Game
 
 			// Setup Managers
 			MapManager.Setup(this);
-			DebugManager.Setup(this);
 			UserManager.Setup(this);
 
 			DialogManager.UpdateDialog("Game has been started");
@@ -45,6 +44,7 @@ namespace LDJam45.Game
 		void Setup()
 		{
 			offset = MainCamera.transform.position - UserManager.PlayerUnit.transform.position;
+			DebugManager.Setup(this);
 		}
 
 		public void Callback(GameState state)

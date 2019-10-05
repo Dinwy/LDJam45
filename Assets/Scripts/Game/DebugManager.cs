@@ -26,13 +26,12 @@ namespace LDJam45.Game
 		{
 			gameManager = gm;
 
-			Debug.Log("Setup Debug Manager");
-
+			// Setup debug functions
 			GiveMockDeck.onClick.AddListener(GiveMockDeckToUser);
-
-			Draw.onClick.AddListener(() => { });
-
 			MoveNext.onClick.AddListener(MoveToNextRoom);
+			Draw.onClick.AddListener(gameManager.UserManager.PlayerUnitManager.Draw);
+
+			Debug.Log("[Setup] Debug Manager");
 		}
 
 		private void MoveToNextRoom()
@@ -57,7 +56,6 @@ namespace LDJam45.Game
 			// Trigger event
 			gameManager.Callback(GameState.MoveToRoom);
 		}
-
 
 		private void GiveMockDeckToUser()
 		{

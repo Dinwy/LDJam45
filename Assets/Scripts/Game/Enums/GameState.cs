@@ -4,6 +4,7 @@ namespace LDJam45.Game
 	{
 		None,
 		Initialize,
+		InitializeFinished,
 		MoveToRoom,
 		MoveToRoomFinished,
 	}

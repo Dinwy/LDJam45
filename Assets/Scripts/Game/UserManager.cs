@@ -42,6 +42,7 @@ namespace LDJam45.Game
 					PlayerUnit = GameObject.Instantiate(UnitPrefab, new Vector3(-3f, 1f, 0), Quaternion.identity);
 					PlayerUnitManager = PlayerUnit.GetComponent<UnitManager>();
 					PlayerUnitManager.Setup();
+					gameManager.Callback(GameState.InitializeFinished);
 					break;
 				default:
 					break;

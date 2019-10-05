@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace LDJam45.Game
 {
-	public class UnitManager : MonoBehaviour
+	public class UnitManager : MonoBehaviour, IUnitAction
 	{
 		public Unit unit;
 		public UnitUI UnitUI;
@@ -23,6 +23,24 @@ namespace LDJam45.Game
 		public void SetupUI(Unit unit)
 		{
 			UnitUI.Setup(unit);
+		}
+
+		public void Draw()
+		{
+			if (Deck.Count == 0)
+			{
+				Debug.LogWarning("No cards in the deck!");
+				return;
+			}
+
+			var card = Deck.Pop();
+			Hands.Add(card);
+			Debug.Log($"Card added: {card.Name}, {Hands.Count}");
+		}
+
+		public void Use()
+		{
+
 		}
 
 		public void Attack(Unit unit)
