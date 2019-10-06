@@ -20,8 +20,8 @@ namespace LDJam45
 			IntroText.color = new Color(1, 1, 1, 0);
 
 			seq.Append(DOTween.ToAlpha(() => IntroText.color, x => IntroText.color = x, 1, 2));
-			seq.Append(textMessage.DOText("LDJam45", 3f));
-			seq.Append(DOTween.ToAlpha(() => IntroText.color, x => IntroText.color = x, 0, 2));
+			seq.Append(textMessage.DOText("LDJam45", 2f));
+			seq.Append(textMessage.DOText("       ", 2f));
 			seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
 		}
 
