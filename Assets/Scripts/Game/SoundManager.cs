@@ -14,11 +14,14 @@ namespace LDJam45.Game
 	public class SoundManager : MonoBehaviour
 	{
 		public GameManager GameManager;
-		public AudioSource BattleTack;
+		public AudioSource BattleTrack;
 
 		void Start()
 		{
 			RegisterEvnets();
+			BattleTrack.volume = 0;
+			BattleTrack.time = UnityEngine.Random.Range(0, BattleTrack.clip.length);
+			BattleTrack.Play();
 		}
 
 		private void OnStageChange(object sender, GameState gs)
@@ -26,9 +29,7 @@ namespace LDJam45.Game
 			switch (gs)
 			{
 				case GameState.BattleBegin:
-					BattleTack.Play();
-					BattleTack.volume = 0;
-					BattleTack.DOFade(1, 1f);
+					BattleTrack.DOFade(1, 2f);
 					break;
 				case GameState.PlayerTurnStart:
 					break;
@@ -39,7 +40,7 @@ namespace LDJam45.Game
 				case GameState.EnemyTurnEnd:
 					break;
 				case GameState.BattleFinished:
-					BattleTack.DOFade(0, 2f);
+					BattleTrack.DOFade(0, 2f);
 					break;
 				case GameState.GameOver:
 					break;

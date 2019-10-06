@@ -529,7 +529,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 292996654}
-  BattleTack: {fileID: 292996661}
+  BattleTrack: {fileID: 292996661}
 --- !u!1001 &348171103
 PrefabInstance:
   m_ObjectHideFlags: 0
