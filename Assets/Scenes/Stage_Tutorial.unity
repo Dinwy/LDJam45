@@ -511,7 +511,7 @@ MonoBehaviour:
   IntroText: {fileID: 1727573894}
   textMessage: {fileID: 886030959}
   MainCamera: {fileID: 1370951195}
-  SceneType: 0
+  SceneType: 1
   CharacterSprite: {fileID: 580123050}
 --- !u!1001 &348171103
 PrefabInstance:
