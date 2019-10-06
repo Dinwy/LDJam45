@@ -104,15 +104,15 @@ namespace LDJam45.Game
 			}
 
 			Renderer.material.mainTexture = Card.Artwork.texture;
+			var ownerUnit = GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>();
+			if (ownerUnit.isInAction) return;
+			ownerUnit.isInAction = true;
+
 			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card, () =>
 			{
 				gameManager.Callback(GameState.PlayerTurnEnd);
+				Destroy(gameObject);
 			});
-
-
-			Debug.Log(TargetGuid);
-
-			Destroy(gameObject);
 		}
 
 		void MakeItBillboard()

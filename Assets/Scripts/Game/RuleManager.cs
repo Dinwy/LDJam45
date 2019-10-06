@@ -45,6 +45,7 @@ namespace LDJam45.Game
 					break;
 				case GameState.PlayerTurnStart:
 					Debug.LogWarning("Turnstart");
+					gameManager.UserManager.PlayerUnitManager.isInAction = false;
 					Debug.Log($"{gameManager.UserManager.PlayerUnitManager.UserType}");
 					gameManager.UserManager.PlayerUnitManager.Draw();
 					break;

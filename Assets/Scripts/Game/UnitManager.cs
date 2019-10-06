@@ -37,6 +37,8 @@ namespace LDJam45.Game
 			}
 		}
 
+		public bool isInAction = false;
+
 		public void Setup()
 		{
 			if (UnitData == null)
@@ -85,23 +87,8 @@ namespace LDJam45.Game
 			OnCardDraw?.Invoke(this, card);
 		}
 
-		public void UseCardToPlayer(UnitManager target)
-		{
-			if (Hands[0] != null)
-			{
-				var card = Hands[0];
-				target.GetDamage(card.Amount);
-				OnAttack?.Invoke(this, OnAttackEnd);
-			}
-		}
-
 		public void Attack(UnitManager unit)
 		{
-		}
-
-		private void OnAttackEnd()
-		{
-
 		}
 
 		public void UseCard(Guid targetId, CardData card, Action callBack)

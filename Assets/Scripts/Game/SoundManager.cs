@@ -56,22 +56,6 @@ namespace LDJam45.Game
 			SceneManager.LoadSceneAsync(1);
 		}
 
-		private IEnumerator EnemyLogic()
-		{
-			yield return new WaitForSeconds(1f);
-
-			var enemies = GameManager.MapManager.GetAllEnemies();
-
-			foreach (var enemy in enemies)
-			{
-				enemy.GetComponent<UnitManager>().Draw();
-				enemy.GetComponent<UnitManager>().UseCardToPlayer(GameManager.UserManager.PlayerUnitManager);
-			}
-
-			yield return new WaitForSeconds(1f);
-			GameManager.Callback(GameState.EnemyTurnEnd);
-		}
-
 		private void RegisterEvnets()
 		{
 			GameManager.OnStageChange += OnStageChange;
