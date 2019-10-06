@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DG.Tweening;
 
@@ -11,6 +12,7 @@ namespace LDJam45.Game
 	{
 		public GameObject CenterPanel;
 		public TextMeshProUGUI DialogText;
+		public Button MoveNextRoom;
 
 		private GameManager gameManager { get; set; }
 

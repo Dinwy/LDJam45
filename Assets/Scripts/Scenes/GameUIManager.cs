@@ -24,6 +24,11 @@ namespace LDJam45.Game
 		private GameManager gameManager { get; set; }
 		private bool initialized = false;
 
+		void Awake()
+		{
+			BlackPanel.SetActive(true);
+		}
+
 		public void Setup(GameManager gm)
 		{
 			gameManager = gm;
