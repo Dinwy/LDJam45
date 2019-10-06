@@ -17,6 +17,7 @@ namespace LDJam45.Game
 		public Stack<CardData> Deck = new Stack<CardData>();
 
 		public event EventHandler<CardData> OnCardDraw;
+		public event EventHandler<CardData> OnCardAddedToDeck;
 		public event EventHandler OnAttack;// Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
@@ -47,6 +48,12 @@ namespace LDJam45.Game
 			Debug.Log("Setup Unit Manager");
 			HP = UnitData.HP;
 			UnitUI.Setup(this);
+		}
+
+		public void AddToDeck(CardData card)
+		{
+			Deck.Push(card);
+			OnCardAddedToDeck?.Invoke(this, card);
 		}
 
 		public void Draw()
