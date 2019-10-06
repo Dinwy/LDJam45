@@ -18,7 +18,7 @@ namespace LDJam45.Game
 
 		public event EventHandler<CardData> OnCardDraw;
 		public event EventHandler<CardData> OnCardAddedToDeck;
-		public event EventHandler OnAttack;// Need to change arg to Card
+		public event EventHandler<Action> OnAttack;// Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
 		public event EventHandler<int> OnGetHeal; // Need to change arg to Card
@@ -91,16 +91,21 @@ namespace LDJam45.Game
 			{
 				var card = Hands[0];
 				target.GetDamage(card.Amount);
-				OnAttack?.Invoke(this, EventArgs.Empty);
+				OnAttack?.Invoke(this, OnAttackEnd);
 			}
 		}
 
 		public void Attack(UnitManager unit)
 		{
-			OnAttack?.Invoke(this, EventArgs.Empty);
+			OnAttack?.Invoke(this, OnAttackEnd);
 		}
 
-		public void UseCard(Guid targetId, CardData card)
+		private void OnAttackEnd()
+		{
+
+		}
+
+		public void UseCard(Guid targetId, CardData card, Action callBack)
 		{
 			var cf = new CardFactory();
 			var act = cf.GetAction(card.CardClass);
@@ -108,6 +113,7 @@ namespace LDJam45.Game
 			switch (card.CardClass)
 			{
 				case CardClass.Damage:
+					Attack(this);
 					GameObject.Find(targetId.ToString()).GetComponent<UnitManager>().GetDamage(card.Amount);
 					break;
 				case CardClass.Heal:

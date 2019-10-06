@@ -60,12 +60,26 @@ namespace LDJam45.Game
 				return;
 			}
 
-			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card);
+			if (TargetGuid == this.gameManager.UserManager.PlayerUnitManager.ID.ToString())
+			{
+				if (Card.CardClass == CardClass.Damage)
+				{
+					Debug.Log("Cannot damage myself");
+					GameObject.Find("HandArea").GetComponent<HandAreaManager>().Sort();
+
+					return;
+				}
+			}
+
+
+			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card, () =>
+			{
+
+			});
 
 			var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			gameManager.Callback(GameState.PlayerTurnEnd);
 
-			GameObject.Find("HandArea").GetComponent<HandAreaManager>().Sort();
 			Debug.Log(TargetGuid);
 
 			Destroy(gameObject);

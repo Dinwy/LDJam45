@@ -61,9 +61,12 @@ namespace LDJam45.Game
 			HandArea.GetComponent<HandAreaManager>().Sort();
 		}
 
-		private void OnAttack(object sender, EventArgs e)
+		private void OnAttack(object sender, Action callBack)
 		{
-
+			var sequence = DOTween.Sequence();
+			sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 1, 0.5f)
+			.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 1, 0.5f)));
+			sequence.OnComplete(() => callBack());
 		}
 
 		private void OnUnitDied(object sender, EventArgs e)
