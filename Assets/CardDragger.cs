@@ -9,6 +9,10 @@ namespace LDJam45.Game
 {
 	public class CardDragger : MonoBehaviour
 	{
+		public Sprite TargetCircle;
+		public Sprite TargetCircle_Yes;
+		public Sprite TargetCircle_No;
+
 		private Vector3 screenPoint;
 		private Vector3 offset;
 
@@ -17,12 +21,14 @@ namespace LDJam45.Game
 
 		public CardData Card { get; set; }
 		private GameManager gameManager;
+		private Renderer Renderer;
 
 		void Start()
 		{
 			originPos = transform.localPosition;
 			gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			MakeItBillboard();
+			Renderer = GetComponent<Renderer>();
 		}
 
 		void OnMouseDown()
@@ -37,6 +43,12 @@ namespace LDJam45.Game
 			Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
 			transform.position = cursorPosition;
 
+			Debug.Log(Vector3.Distance(originPos, cursorPoint));
+			if (Vector3.Distance(originPos, cursorPosition) > 600)
+			{
+				Renderer.material.mainTexture = TargetCircle.texture;
+			};
+
 			RaycastHit hit;
 			int layerMask = 1 << 10;
 
@@ -44,11 +56,28 @@ namespace LDJam45.Game
 			if (Physics.Raycast(ray, out hit, 300.0f, layerMask))
 			{
 				TargetGuid = hit.transform.name;
+				if (TargetGuid != Guid.Empty.ToString())
+				{
+					if (TargetGuid == this.gameManager.UserManager.PlayerUnitManager.ID.ToString())
+					{
+						if (Card.CardClass == CardClass.Damage)
+						{
+							Renderer.material.mainTexture = TargetCircle_No.texture;
+						}
+					}
+					else
+					{
+						Renderer.material.mainTexture = TargetCircle_Yes.texture;
+					}
+				}
+
 				Debug.Log($"Hit target: {hit.transform.name}");
 			}
 			else
 			{
 				TargetGuid = Guid.Empty.ToString();
+				Renderer.material.mainTexture = TargetCircle.texture;
+
 			}
 		}
 
@@ -56,6 +85,7 @@ namespace LDJam45.Game
 		{
 			if (TargetGuid == Guid.Empty.ToString())
 			{
+				Renderer.material.mainTexture = Card.Artwork.texture;
 				gameObject.transform.localPosition = originPos;
 				return;
 			}
@@ -65,20 +95,20 @@ namespace LDJam45.Game
 				if (Card.CardClass == CardClass.Damage)
 				{
 					Debug.Log("Cannot damage myself");
+					Renderer.material.mainTexture = Card.Artwork.texture;
+
 					GameObject.Find("HandArea").GetComponent<HandAreaManager>().Sort();
 
 					return;
 				}
 			}
 
-
+			Renderer.material.mainTexture = Card.Artwork.texture;
 			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card, () =>
 			{
-
+				gameManager.Callback(GameState.PlayerTurnEnd);
 			});
 
-			var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-			gameManager.Callback(GameState.PlayerTurnEnd);
 
 			Debug.Log(TargetGuid);
 

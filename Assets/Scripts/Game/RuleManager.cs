@@ -114,11 +114,10 @@ namespace LDJam45.Game
 			foreach (var enemy in enemies)
 			{
 				enemy.GetComponent<UnitManager>().Draw();
-				enemy.GetComponent<UnitManager>().UseCardToPlayer(gameManager.UserManager.PlayerUnitManager);
+				enemy.GetComponent<UnitManager>().UseCard(gameManager.UserManager.PlayerUnitManager.ID,
+				enemy.GetComponent<UnitManager>().Hands[0],
+				() => gameManager.Callback(GameState.EnemyTurnEnd));
 			}
-
-			yield return new WaitForSeconds(1f);
-			gameManager.Callback(GameState.EnemyTurnEnd);
 		}
 
 		private void RegisterEvnets()

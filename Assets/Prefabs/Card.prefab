@@ -106,4 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c844bbd997b234b90d5a8c10c2d384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetCircle: {fileID: 21300000, guid: af47c6ff2d6c59a4ebf3ebb7a3b1023e, type: 3}
+  TargetCircle_Yes: {fileID: 21300000, guid: 6683c621b1a568540959ab2c73feb824, type: 3}
+  TargetCircle_No: {fileID: 21300000, guid: 1e0cbe2d289c20045a65d8b427347548, type: 3}
   TargetGuid: 

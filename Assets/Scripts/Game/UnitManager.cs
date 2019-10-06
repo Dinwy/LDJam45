@@ -97,7 +97,6 @@ namespace LDJam45.Game
 
 		public void Attack(UnitManager unit)
 		{
-			OnAttack?.Invoke(this, OnAttackEnd);
 		}
 
 		private void OnAttackEnd()
@@ -113,7 +112,8 @@ namespace LDJam45.Game
 			switch (card.CardClass)
 			{
 				case CardClass.Damage:
-					Attack(this);
+					OnAttack?.Invoke(this, callBack);
+
 					GameObject.Find(targetId.ToString()).GetComponent<UnitManager>().GetDamage(card.Amount);
 					break;
 				case CardClass.Heal:

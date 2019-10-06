@@ -63,9 +63,14 @@ namespace LDJam45.Game
 
 		private void OnAttack(object sender, Action callBack)
 		{
+			var unit = sender as UnitManager;
+			var dir = 0.5f;
+			dir = unit.UserType == UserType.Computer ? -1 : 1;
+			var duration = 0.5f;
+
 			var sequence = DOTween.Sequence();
-			sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 1, 0.5f)
-			.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 1, 0.5f)));
+			sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 1 * dir, duration)
+			.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 1 * dir, duration)));
 			sequence.OnComplete(() => callBack());
 		}
 
