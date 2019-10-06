@@ -718,7 +718,7 @@ PrefabInstance:
         type: 3}
       propertyPath: RoomData
       value: 
-      objectReference: {fileID: 11400000, guid: 79db701453f9ba04a9044e6fc263d4f8,
+      objectReference: {fileID: 11400000, guid: 2da8f498df16068419a31e09588e185d,
         type: 2}
     - target: {fileID: 6989898166809667836, guid: 0f8db6cd406711242b839a9f020b68ec,
         type: 3}
@@ -2219,15 +2219,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370951193}
-  m_LocalRotation: {x: -0.11704214, y: 0.00059293385, z: -0.0000698998, w: -0.9931268}
-  m_LocalPosition: {x: -0.07796134, y: 2.6450772, z: -6.8362103}
+  m_LocalRotation: {x: 0.17467934, y: -0.0005842829, z: 0.000103655824, w: 0.9846252}
+  m_LocalPosition: {x: -0.07796134, y: 3.98, z: -6.8362103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1417267878}
   - {fileID: 1482293485}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15, y: -0.068, z: 0}
+  m_LocalEulerAnglesHint: {x: 20.12, y: -0.068, z: 0}
 --- !u!1 &1417267877
 GameObject:
   m_ObjectHideFlags: 0

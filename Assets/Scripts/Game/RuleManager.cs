@@ -116,6 +116,8 @@ namespace LDJam45.Game
 			foreach (var enemy in enemies)
 			{
 				var enemyUnit = enemy.GetComponent<UnitManager>();
+				if (enemyUnit.IsDead) continue;
+
 				enemyUnit.Draw();
 				Debug.LogWarning($"{enemyUnit.Hands[0].Name}: Drawn");
 				enemyUnit.UseCard(gameManager.UserManager.PlayerUnitManager.ID,

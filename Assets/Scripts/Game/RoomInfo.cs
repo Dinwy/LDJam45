@@ -14,19 +14,25 @@ namespace LDJam45.Game
 
 		public void Setup()
 		{
-			var pos = new Vector3(transform.position.x + 2f, transform.position.y + 1, transform.position.z);
-			var go = GameObject.Instantiate(UnitPrefab, pos, Quaternion.identity);
-			go.transform.SetParent(this.transform);
+			var idx = 0;
 
-			var um = go.GetComponent<UnitManager>();
-			um.UnitData = RoomData.Units[0];
+			foreach (var unitData in RoomData.Units)
+			{
+				var pos = new Vector3(transform.position.x + 2f - idx, transform.position.y + 1, transform.position.z + idx);
+				var go = GameObject.Instantiate(UnitPrefab, pos, Quaternion.identity);
+				go.transform.SetParent(this.transform);
 
-			// Need to set proper unit factory
-			um.UserType = UserType.Computer;
-			um.Setup();
-			go.name = um.ID.ToString();
+				var um = go.GetComponent<UnitManager>();
+				um.UnitData = unitData;
 
-			UnitGameObject.Add(go);
+				// Need to set proper unit factory
+				um.UserType = UserType.Computer;
+				um.Setup();
+				go.name = um.ID.ToString();
+
+				UnitGameObject.Add(go);
+				idx++;
+			}
 		}
 	}
 }
