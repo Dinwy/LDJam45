@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using DG.Tweening;
 using TMPro;
@@ -54,7 +55,14 @@ namespace LDJam45.Game
 					StartCoroutine(EnemyLogic());
 					break;
 				case GameState.EnemyTurnEnd:
-					gameManager.Callback(GameState.PlayerTurnStart);
+					if (enemies.All(x => !x.activeSelf))
+					{
+						gameManager.Callback(GameState.BattleFinished);
+					}
+					else
+					{
+						gameManager.Callback(GameState.PlayerTurnStart);
+					}
 					break;
 				case GameState.BattleFinished:
 					Debug.Log("BattleFinished");
