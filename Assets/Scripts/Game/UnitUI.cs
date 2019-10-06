@@ -63,6 +63,8 @@ namespace LDJam45.Game
 
 		private void OnAttack(object sender, Action callBack)
 		{
+			Debug.LogWarning($"[{this.GetType().Name}] OnAttack!");
+
 			var unit = sender as UnitManager;
 			var dir = 0.5f;
 			dir = unit.UserType == UserType.Computer ? -1 : 1;
@@ -80,7 +82,6 @@ namespace LDJam45.Game
 
 			var sequence = DOTween.Sequence();
 
-			// 
 			DOTween.To(() => Canvas.GetComponent<CanvasGroup>().alpha, x => Canvas.GetComponent<CanvasGroup>().alpha = x, 0, 1f);
 			GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 1f);
 			sequence.AppendInterval(1f);
@@ -94,10 +95,11 @@ namespace LDJam45.Game
 
 		private void OnGetDamage(object sender, int damage)
 		{
-			Debug.Log($"[{this.GetType().Name}] Getting {damage} damage!");
+			Debug.LogWarning("OnGetDamage!");
+			Debug.LogWarning($"[{this.GetType().Name}] Getting {damage} damage!");
 			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
 			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
-			this.transform.DOShakePosition(0.5f, 0.5f, damage);
+			transform.DOShakePosition(0.5f, 1, damage);
 		}
 
 		private void OnGetHeal(object sender, int heal)

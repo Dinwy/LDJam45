@@ -18,7 +18,7 @@ namespace LDJam45.Game
 
 			foreach (var unitData in RoomData.Units)
 			{
-				var pos = new Vector3(transform.position.x + 2f - idx, transform.position.y + 1, transform.position.z + idx);
+				var pos = new Vector3(transform.position.x + 3f - idx, transform.position.y + 1, transform.position.z + idx);
 				var go = GameObject.Instantiate(UnitPrefab, pos, Quaternion.identity);
 				go.transform.SetParent(this.transform);
 

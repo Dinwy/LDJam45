@@ -112,18 +112,30 @@ namespace LDJam45.Game
 			yield return new WaitForSeconds(1f);
 
 			var enemies = gameManager.MapManager.GetAllEnemies();
+			enemyCount = enemies.Count;
 
 			foreach (var enemy in enemies)
 			{
 				var enemyUnit = enemy.GetComponent<UnitManager>();
-				if (enemyUnit.IsDead) continue;
+				if (enemyUnit.IsDead)
+				{
+					enemyCount -= 1;
+					continue;
+				}
 
 				enemyUnit.Draw();
 				Debug.LogWarning($"{enemyUnit.Hands[0].Name}: Drawn");
 				enemyUnit.UseCard(gameManager.UserManager.PlayerUnitManager.ID,
 				enemyUnit.Hands[0],
-				() => gameManager.Callback(GameState.EnemyTurnEnd));
+				Count);
 			}
+		}
+
+		private int enemyCount = 0;
+		private void Count()
+		{
+			enemyCount--;
+			if (enemyCount == 0) gameManager.Callback(GameState.EnemyTurnEnd);
 		}
 
 		private void RegisterEvnets()
