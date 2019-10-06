@@ -15,7 +15,7 @@ namespace LDJam45.Game
 		public string TargetGuid;
 		private Vector3 originPos;
 
-		public Card Card { get; set; }
+		public CardData Card { get; set; }
 
 		void Start()
 		{

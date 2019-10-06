@@ -42,7 +42,7 @@ namespace LDJam45.Game
 			UnitManager.OnUnitDied += OnUnitDied;
 		}
 
-		private void OnCardDraw(object sender, Card card)
+		private void OnCardDraw(object sender, CardData card)
 		{
 			var go = GameObject.Instantiate(CardPrefab, Vector3.zero, Quaternion.identity);
 			go.GetComponent<Renderer>().material.mainTexture = card.Artwork.texture;

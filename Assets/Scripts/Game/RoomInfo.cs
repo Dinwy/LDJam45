@@ -20,6 +20,9 @@ namespace LDJam45.Game
 
 			var um = go.GetComponent<UnitManager>();
 			um.UnitData = RoomData.Units[0];
+
+			// Need to set proper unit factory
+			um.UserType = UserType.Computer;
 			um.Setup();
 			go.name = um.ID.ToString();
 

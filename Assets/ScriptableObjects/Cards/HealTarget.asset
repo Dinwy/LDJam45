@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44864654813ff3343b4a3b4c58aa48f0, type: 3}
-  m_Name: Heal
+  m_Name: HealTarget
   m_EditorClassIdentifier: 
   Name: Heal
   Description: Heal your self

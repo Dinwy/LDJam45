@@ -60,7 +60,7 @@ namespace LDJam45.Game
 
 		private void GiveMockDeckToUser()
 		{
-			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<Card>(MockCardList.CardList);
+			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<CardData>(MockCardList.CardList);
 			Debug.Log("Mock list has been given");
 			Debug.Log($"{gameManager.UserManager.PlayerUnitManager.Deck.Count}");
 		}

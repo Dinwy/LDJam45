@@ -22,7 +22,7 @@ namespace LDJam45.Game
 
 		public void Setup(GameManager gm)
 		{
-		gameManager = gm;
+			gameManager = gm;
 			RegisterEvnets();
 		}
 
@@ -36,13 +36,15 @@ namespace LDJam45.Game
 					foreach (var enemy in enemies)
 					{
 						enemy.transform.SetParent(EnemyFields.transform);
-						enemy.GetComponent<UnitManager>().Deck = new Stack<Card>(gameManager.DebugManager.MockCardList_Lamia.CardList);
+						enemy.GetComponent<UnitManager>().Deck = new Stack<CardData>(gameManager.DebugManager.MockCardList_Lamia.CardList);
 					}
 
 					// Force changing state
 					gameManager.Callback(GameState.PlayerTurnStart);
 					break;
 				case GameState.PlayerTurnStart:
+					Debug.LogWarning("Turnstart");
+					Debug.Log($"{gameManager.UserManager.PlayerUnitManager.UserType}");
 					gameManager.UserManager.PlayerUnitManager.Draw();
 					break;
 				case GameState.PlayerTurnEnd:
@@ -50,6 +52,9 @@ namespace LDJam45.Game
 					break;
 				case GameState.EnemyTurnStart:
 					StartCoroutine(EnemyLogic());
+					break;
+				case GameState.EnemyTurnEnd:
+					gameManager.Callback(GameState.PlayerTurnStart);
 					break;
 				case GameState.BattleFinished:
 					Debug.Log("BattleFinished");
@@ -67,9 +72,12 @@ namespace LDJam45.Game
 
 			foreach (var enemy in enemies)
 			{
-				enemy.GetComponent<UnitManager>()?.Draw();
+				enemy.GetComponent<UnitManager>().Draw();
 				enemy.GetComponent<UnitManager>().UseCardToPlayer(gameManager.UserManager.PlayerUnitManager);
 			}
+
+			yield return new WaitForSeconds(1f);
+			gameManager.Callback(GameState.EnemyTurnEnd);
 		}
 
 		private void RegisterEvnets()

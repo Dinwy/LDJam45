@@ -9,7 +9,6 @@ namespace LDJam45.Game
 	{
 		[Header("GameObjects")]
 		public GameObject UnitPrefab;
-		public UserType UserType;
 
 		public Guid ID { get; private set; }
 		public GameObject PlayerUnit { get; private set; }
@@ -42,6 +41,7 @@ namespace LDJam45.Game
 					PlayerUnit = GameObject.Instantiate(UnitPrefab, new Vector3(-3f, 1f, 0), Quaternion.identity);
 					PlayerUnitManager = PlayerUnit.GetComponent<UnitManager>();
 					PlayerUnitManager.Setup();
+					PlayerUnitManager.UserType = UserType.Human;
 					gameManager.Callback(GameState.InitializeFinished);
 					break;
 				default:

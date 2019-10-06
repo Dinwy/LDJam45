@@ -8,11 +8,12 @@ namespace LDJam45.Game
 	{
 		public UnitData UnitData;
 		public UnitUI UnitUI;
+		public UserType UserType = UserType.Human;
 
-		public List<Card> Hands = new List<Card>();
-		public Stack<Card> Deck = new Stack<Card>();
+		public List<CardData> Hands = new List<CardData>();
+		public Stack<CardData> Deck = new Stack<CardData>();
 
-		public event EventHandler<Card> OnCardDraw;
+		public event EventHandler<CardData> OnCardDraw;
 		public event EventHandler OnAttack;// Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
@@ -56,6 +57,11 @@ namespace LDJam45.Game
 			var card = Deck.Pop();
 			Hands.Add(card);
 			Debug.Log($"Card added: {card.Name}, {Hands.Count}");
+
+			Debug.Log($"{UnitData.Name}, {UserType.ToString()}");
+			// Don't tirgger UI
+			if (UserType == UserType.Computer) return;
+
 			OnCardDraw?.Invoke(this, card);
 		}
 

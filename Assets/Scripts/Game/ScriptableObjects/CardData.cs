@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LDJam45.Game
 {
 	[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
-	public class Card : ScriptableObject
+	public class CardData : ScriptableObject
 	{
 		public string Name;
 		public string Description;

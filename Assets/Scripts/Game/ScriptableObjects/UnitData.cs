@@ -15,7 +15,7 @@ namespace LDJam45.Game
 		public Sprite Artwork;
 		public sbyte Priority;
 
-		public List<Card> Hand { get; private set; }
-		public Stack<Card> Deck { get; private set; }
+		public List<CardData> Hand { get; private set; }
+		public Stack<CardData> Deck { get; private set; }
 	}
 }
