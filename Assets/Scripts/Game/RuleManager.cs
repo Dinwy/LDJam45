@@ -37,7 +37,8 @@ namespace LDJam45.Game
 					foreach (var enemy in enemies)
 					{
 						enemy.transform.SetParent(EnemyFields.transform);
-						enemy.GetComponent<UnitManager>().Deck = new Stack<CardData>(gameManager.DebugManager.MockCardList_Lamia.CardList);
+						var enemyUnit = enemy.GetComponent<UnitManager>();
+						enemyUnit.Deck = new Stack<CardData>(gameManager.MonsterCardManager.GetCardList(enemyUnit.UnitData.Name).CardList);
 					}
 
 					// Force changing state
@@ -114,9 +115,11 @@ namespace LDJam45.Game
 
 			foreach (var enemy in enemies)
 			{
-				enemy.GetComponent<UnitManager>().Draw();
-				enemy.GetComponent<UnitManager>().UseCard(gameManager.UserManager.PlayerUnitManager.ID,
-				enemy.GetComponent<UnitManager>().Hands[0],
+				var enemyUnit = enemy.GetComponent<UnitManager>();
+				enemyUnit.Draw();
+				Debug.LogWarning($"{enemyUnit.Hands[0].Name}: Drawn");
+				enemyUnit.UseCard(gameManager.UserManager.PlayerUnitManager.ID,
+				enemyUnit.Hands[0],
 				() => gameManager.Callback(GameState.EnemyTurnEnd));
 			}
 		}

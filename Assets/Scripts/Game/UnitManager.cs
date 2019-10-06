@@ -95,6 +95,7 @@ namespace LDJam45.Game
 		{
 			var cf = new CardFactory();
 			var act = cf.GetAction(card.CardClass);
+			isInAction = true;
 
 			switch (card.CardClass)
 			{

@@ -43,7 +43,6 @@ namespace LDJam45.Game
 			Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
 			transform.position = cursorPosition;
 
-			Debug.Log(Vector3.Distance(originPos, cursorPoint));
 			if (Vector3.Distance(originPos, cursorPosition) > 600)
 			{
 				Renderer.material.mainTexture = TargetCircle.texture;

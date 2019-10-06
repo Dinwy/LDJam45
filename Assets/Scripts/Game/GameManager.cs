@@ -12,6 +12,7 @@ namespace LDJam45.Game
 		public UserManager UserManager;
 		public RuleManager RuleManager;
 		public GameUIManager GameUIManager;
+		public MonsterCardManager MonsterCardManager;
 
 		public event EventHandler<GameState> OnStageChange;
 
@@ -28,6 +29,7 @@ namespace LDJam45.Game
 			DialogManager.Setup(this);
 			RuleManager.Setup(this);
 			GameUIManager.Setup(this);
+			MonsterCardManager.Setup(this);
 
 			OnStageChange?.Invoke(this, GameState.Intro);
 		}

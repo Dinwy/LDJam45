@@ -16,9 +16,6 @@ namespace LDJam45.Game
 		public Button GiveMockDeck;
 		public Button Draw;
 
-		[Header("Card Data")]
-		public MockCardList MockCardList;
-		public MockCardList MockCardList_Lamia;
 
 		private GameManager gameManager { get; set; }
 		private bool animating = false;
@@ -60,14 +57,7 @@ namespace LDJam45.Game
 
 		private void GiveMockDeckToUser()
 		{
-			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<CardData>(MockCardList.CardList);
-			Debug.Log("Mock list has been given");
-			Debug.Log($"{gameManager.UserManager.PlayerUnitManager.Deck.Count}");
-		}
-
-		void OnFinished()
-		{
-
+			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<CardData>(gameManager.MonsterCardManager.GetCardList("Boy").CardList);
 		}
 	}
 }

@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 292996660}
   - component: {fileID: 292996662}
   - component: {fileID: 292996661}
+  - component: {fileID: 292996663}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -418,6 +419,7 @@ MonoBehaviour:
   UserManager: {fileID: 292996658}
   RuleManager: {fileID: 292996659}
   GameUIManager: {fileID: 292996660}
+  MonsterCardManager: {fileID: 292996663}
   GameMode: 0
 --- !u!4 &292996655
 Transform:
@@ -464,8 +466,6 @@ MonoBehaviour:
   MoveNext: {fileID: 606556004}
   GiveMockDeck: {fileID: 1102429483}
   Draw: {fileID: 373726182}
-  MockCardList: {fileID: 11400000, guid: b83dc43fd69158c42bffb15df4358998, type: 2}
-  MockCardList_Lamia: {fileID: 11400000, guid: fc6f75499ae23af46b3aff90f976ef96, type: 2}
 --- !u!114 &292996658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +625,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 292996654}
   BattleTrack: {fileID: 292996661}
+--- !u!114 &292996663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292996653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c2f416bd15bd04789a0eaf6af7e3ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MockCardList: {fileID: 11400000, guid: b83dc43fd69158c42bffb15df4358998, type: 2}
+  MockCardList_Lamia: {fileID: 11400000, guid: fc6f75499ae23af46b3aff90f976ef96, type: 2}
+  MockCardList_MonsterA: {fileID: 11400000, guid: ba79ac45231cab34cba5ed1d2c905a45,
+    type: 2}
 --- !u!1001 &348171103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,6 +720,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 79db701453f9ba04a9044e6fc263d4f8,
         type: 2}
+    - target: {fileID: 6989898166809667836, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 192029591152513277, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8db6cd406711242b839a9f020b68ec, type: 3}
 --- !u!4 &348171104 stripped
@@ -2318,6 +2344,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 79db701453f9ba04a9044e6fc263d4f8,
         type: 2}
+    - target: {fileID: 6989898166809667836, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 192029591152513277, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8db6cd406711242b839a9f020b68ec, type: 3}
 --- !u!4 &1463942267 stripped
@@ -2905,6 +2941,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cc14def127cb4784aa446791e12ad337,
         type: 2}
+    - target: {fileID: 6989898166809667836, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8db6cd406711242b839a9f020b68ec, type: 3}
 --- !u!4 &2090462791 stripped
@@ -3130,6 +3171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 192029591152513277, guid: 0f8db6cd406711242b839a9f020b68ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8db6cd406711242b839a9f020b68ec, type: 3}
