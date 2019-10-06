@@ -3,7 +3,8 @@ namespace LDJam45.Game
 	public enum GameState
 	{
 		None,
-		Initialize,
+		Intro,
+		InitializeGame,
 		InitializeFinished,
 		MoveToRoom,
 		MoveToRoomFinished,

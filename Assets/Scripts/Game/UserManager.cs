@@ -37,7 +37,7 @@ namespace LDJam45.Game
 		{
 			switch (gs)
 			{
-				case GameState.Initialize:
+				case GameState.InitializeGame:
 					PlayerUnit = GameObject.Instantiate(UnitPrefab, new Vector3(-3f, 1f, 0), Quaternion.identity);
 					PlayerUnitManager = PlayerUnit.GetComponent<UnitManager>();
 

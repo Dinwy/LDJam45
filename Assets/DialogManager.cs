@@ -29,7 +29,7 @@ namespace LDJam45.Game
 		{
 			switch (gameState)
 			{
-				case GameState.Initialize:
+				case GameState.InitializeGame:
 					UpdateDialog("Game has been started");
 					break;
 				case GameState.MoveToRoom:

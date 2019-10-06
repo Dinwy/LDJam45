@@ -22,7 +22,15 @@ namespace LDJam45
 			seq.Append(DOTween.ToAlpha(() => IntroText.color, x => IntroText.color = x, 1, 2));
 			seq.Append(textMessage.DOText("LDJam45", 2f));
 			seq.Append(textMessage.DOText("       ", 2f));
-			seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
+
+			if (PlayerPrefs.HasKey("tutorialFinished"))
+			{
+				seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
+			}
+			else
+			{
+				seq.AppendCallback(() => SceneManager.LoadSceneAsync(2));
+			};
 		}
 
 		void Update()
