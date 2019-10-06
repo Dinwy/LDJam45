@@ -80,6 +80,11 @@ namespace LDJam45.Game
 			}
 		}
 
+		public void ResetArt()
+		{
+			Renderer.material.mainTexture = Card.Artwork.texture;
+		}
+
 		void OnMouseUp()
 		{
 			if (TargetGuid == Guid.Empty.ToString())
@@ -102,7 +107,6 @@ namespace LDJam45.Game
 				}
 			}
 
-			Renderer.material.mainTexture = Card.Artwork.texture;
 			var ownerUnit = GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>();
 			if (ownerUnit.isInAction) return;
 			ownerUnit.isInAction = true;
@@ -113,6 +117,7 @@ namespace LDJam45.Game
 				Destroy(gameObject);
 			});
 		}
+
 
 		void MakeItBillboard()
 		{
