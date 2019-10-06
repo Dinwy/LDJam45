@@ -12,6 +12,7 @@ namespace LDJam45.Game
 		PlayerTurnStart,
 		PlayerTurnEnd,
 		EnemyTurnStart,
-		EnemyTurnEnd
+		EnemyTurnEnd,
+		GameOver
 	}
 }

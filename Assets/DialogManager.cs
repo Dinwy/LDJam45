@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+using DG.Tweening;
+
 namespace LDJam45.Game
 {
-
 	public class DialogManager : MonoBehaviour, IManager
 	{
+		public GameObject CenterPanel;
 		public TextMeshProUGUI DialogText;
 
 		private GameManager gameManager { get; set; }
@@ -42,6 +44,10 @@ namespace LDJam45.Game
 					break;
 				case GameState.BattleFinished:
 					UpdateDialog("Enemy exsits in the room! Battle Finished!");
+					break;
+				case GameState.GameOver:
+					CenterPanel.SetActive(true);
+					DOTween.To(() => CenterPanel.GetComponent<CanvasGroup>().alpha, x => CenterPanel.GetComponent<CanvasGroup>().alpha = x, 1, 1f);
 					break;
 				default:
 					break;

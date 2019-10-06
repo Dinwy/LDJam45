@@ -71,9 +71,9 @@ namespace LDJam45.Game
 					StartCoroutine(EnemyLogic());
 					break;
 				case GameState.EnemyTurnEnd:
-					if (enemies.All(x => !x.activeSelf))
+					if (gameManager.UserManager.PlayerUnitManager.IsDead)
 					{
-						gameManager.Callback(GameState.BattleFinished);
+						gameManager.Callback(GameState.GameOver);
 					}
 					else
 					{
@@ -89,6 +89,10 @@ namespace LDJam45.Game
 						StartCoroutine(OnStageFinished());
 					}
 					break;
+				case GameState.GameOver:
+					Debug.LogWarning("GameOver");
+					StartCoroutine(OnStageFinished());
+					break;
 				default:
 					break;
 			}
@@ -96,7 +100,7 @@ namespace LDJam45.Game
 
 		private IEnumerator OnStageFinished()
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(2f);
 
 			SceneManager.LoadSceneAsync(1);
 		}
