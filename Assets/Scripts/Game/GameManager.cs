@@ -1,10 +1,5 @@
 ﻿using System;
-
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 namespace LDJam45.Game
 {
@@ -23,10 +18,9 @@ namespace LDJam45.Game
 		[Header("Settings")]
 		public GameMode GameMode;
 
-
 		void Start()
 		{
-			Debug.LogWarning("Start game");
+			Debug.Log("Start game");
 
 			// Setup Managers
 			MapManager.Setup(this);

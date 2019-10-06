@@ -15,6 +15,5 @@ MonoBehaviour:
   Name: Cat
   HP: 100
   Damage: 10
-  Description: Strong dragon
+  Description: Cute cat
   Artwork: {fileID: 21300000, guid: 9db437518fd8d5545b9915401499d36d, type: 3}
-  Priority: 0

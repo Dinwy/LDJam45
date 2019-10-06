@@ -39,7 +39,11 @@ namespace LDJam45.Game
 					var seq = DOTween.Sequence();
 					seq.Append(GetIntroSequence());
 					seq.Append(DOTween.To(() => BlackPanel.GetComponent<CanvasGroup>().alpha, x => BlackPanel.GetComponent<CanvasGroup>().alpha = x, 0, 1f));
-					seq.AppendCallback(() => gameManager.Callback(GameState.InitializeGame));
+					seq.AppendCallback(() =>
+					{
+						BlackPanel.SetActive(false);
+						gameManager.Callback(GameState.InitializeGame);
+					});
 					break;
 				case GameState.InitializeFinished:
 					Setup();
