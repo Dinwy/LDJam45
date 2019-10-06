@@ -46,7 +46,7 @@ namespace LDJam45.Game
 		{
 			var go = GameObject.Instantiate(CardPrefab, Vector3.zero, Quaternion.identity);
 			go.GetComponent<Renderer>().material.mainTexture = card.Artwork.texture;
-
+			go.GetComponent<CardDragger>().Card = card;
 			go.transform.SetParent(HandArea.transform, false);
 			Debug.Log($"[{this.GetType().Name}: Draw a card");
 

@@ -15,6 +15,8 @@ namespace LDJam45.Game
 		public string TargetGuid;
 		private Vector3 originPos;
 
+		public Card Card { get; set; }
+
 		void Start()
 		{
 			originPos = transform.localPosition;
@@ -56,7 +58,7 @@ namespace LDJam45.Game
 				return;
 			}
 
-			GameObject.Find(TargetGuid).GetComponent<UnitManager>()?.GetDamage(30);
+			GameObject.Find(TargetGuid).GetComponent<UnitManager>()?.GetDamage(Card.Damage);
 
 			var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			gameManager.Callback(GameState.PlayerTurnEnd);
