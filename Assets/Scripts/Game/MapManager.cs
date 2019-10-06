@@ -62,6 +62,11 @@ namespace LDJam45.Game
 			return roomInfos[currentPosition].UnitGameObject;
 		}
 
+		public bool IsLastRoom()
+		{
+			return roomInfos.Count - 1 == currentPosition;
+		}
+
 		private void OnStageChange(object sender, GameState e)
 		{
 			switch (e)

@@ -49,6 +49,22 @@ namespace LDJam45.Game
 					gameManager.UserManager.PlayerUnitManager.Draw();
 					break;
 				case GameState.PlayerTurnEnd:
+					int howManyDead = 0;
+
+					foreach (var enemy in enemies)
+					{
+						if (enemy.GetComponent<UnitManager>().IsDead)
+						{
+							howManyDead++;
+						}
+					}
+
+					if (howManyDead == enemies.Count)
+					{
+						gameManager.Callback(GameState.BattleFinished);
+						return;
+					}
+
 					gameManager.Callback(GameState.EnemyTurnStart);
 					break;
 				case GameState.EnemyTurnStart:
@@ -66,10 +82,23 @@ namespace LDJam45.Game
 					break;
 				case GameState.BattleFinished:
 					Debug.Log("BattleFinished");
+
+					if (gameManager.MapManager.IsLastRoom())
+					{
+						Debug.Log("Stage finished!");
+						StartCoroutine(OnStageFinished());
+					}
 					break;
 				default:
 					break;
 			}
+		}
+
+		private IEnumerator OnStageFinished()
+		{
+			yield return new WaitForSeconds(1f);
+
+			SceneManager.LoadSceneAsync(1);
 		}
 
 		private IEnumerator EnemyLogic()
