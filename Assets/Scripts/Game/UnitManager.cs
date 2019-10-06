@@ -17,8 +17,9 @@ namespace LDJam45.Game
 		public event EventHandler OnAttack;// Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
+		public event EventHandler<int> OnGetHeal; // Need to change arg to Card
 
-		public Guid ID { get; private set; }
+		public Guid ID { get; private set; } = Guid.NewGuid();
 		public int HP { get; private set; }
 		public bool IsDead
 		{
@@ -41,7 +42,6 @@ namespace LDJam45.Game
 			}
 
 			Debug.Log("Setup Unit Manager");
-			ID = Guid.NewGuid();
 			HP = UnitData.HP;
 			UnitUI.Setup(this);
 		}
@@ -70,7 +70,7 @@ namespace LDJam45.Game
 			if (Hands[0] != null)
 			{
 				var card = Hands[0];
-				target.GetDamage(card.Damage);
+				target.GetDamage(card.Amount);
 				OnAttack?.Invoke(this, EventArgs.Empty);
 			}
 		}
@@ -80,20 +80,46 @@ namespace LDJam45.Game
 			OnAttack?.Invoke(this, EventArgs.Empty);
 		}
 
-		public void GetDamage(int damage)
+		public void UseCard(Guid targetId, CardData card)
 		{
-			this.HP -= damage;
+			var cf = new CardFactory();
+			var act = cf.GetAction(card.CardClass);
+
+			switch (card.CardClass)
+			{
+				case CardClass.Damage:
+					GameObject.Find(targetId.ToString()).GetComponent<UnitManager>().GetDamage(card.Amount);
+					break;
+				case CardClass.Heal:
+					GameObject.Find(targetId.ToString()).GetComponent<UnitManager>().GetHeal(card.Amount);
+					break;
+				default:
+					break;
+			}
+
+		}
+
+		public void GetDamage(int amount)
+		{
+			this.HP -= amount;
 
 			// Tigger when unit died
 			if (!IsDead)
 			{
-				OnGetDamage?.Invoke(this, damage);
+				OnGetDamage?.Invoke(this, amount);
 			}
 			else if (IsDead)
 			{
-				OnGetDamage?.Invoke(this, damage);
+				OnGetDamage?.Invoke(this, amount);
 				OnUnitDied?.Invoke(this, EventArgs.Empty);
 			}
+		}
+
+		public void GetHeal(int amount)
+		{
+			this.HP += amount;
+
+			OnGetHeal?.Invoke(this, amount);
 		}
 	}
 }

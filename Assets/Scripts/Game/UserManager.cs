@@ -40,6 +40,9 @@ namespace LDJam45.Game
 				case GameState.Initialize:
 					PlayerUnit = GameObject.Instantiate(UnitPrefab, new Vector3(-3f, 1f, 0), Quaternion.identity);
 					PlayerUnitManager = PlayerUnit.GetComponent<UnitManager>();
+
+					// Set Guid;
+					PlayerUnit.name = PlayerUnitManager.ID.ToString();
 					PlayerUnitManager.Setup();
 					PlayerUnitManager.UserType = UserType.Human;
 					gameManager.Callback(GameState.InitializeFinished);

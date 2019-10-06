@@ -39,16 +39,23 @@ namespace LDJam45.Game
 			UnitManager.OnCardDraw += OnCardDraw;
 			UnitManager.OnAttack += OnAttack;
 			UnitManager.OnGetDamage += OnGetDamage;
+			UnitManager.OnGetHeal += OnGetHeal;
 			UnitManager.OnUnitDied += OnUnitDied;
 		}
 
 		private void OnCardDraw(object sender, CardData card)
 		{
+			var unit = sender as UnitManager;
+
+			// Set owner ID
+			card.OwnerID = unit.ID;
+
 			var go = GameObject.Instantiate(CardPrefab, Vector3.zero, Quaternion.identity);
 			go.GetComponent<Renderer>().material.mainTexture = card.Artwork.texture;
 			go.GetComponent<CardDragger>().Card = card;
 			go.transform.SetParent(HandArea.transform, false);
-			Debug.Log($"[{this.GetType().Name}: Draw a card");
+
+			Debug.Log($"[{this.GetType().Name}: Draw a card, {card.Name}, {card.Amount} {card.CardClass}");
 
 			// Temp. Sort.
 			HandArea.GetComponent<HandAreaManager>().Sort();
@@ -83,6 +90,13 @@ namespace LDJam45.Game
 			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
 			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
 			this.transform.DOShakePosition(0.5f, 0.5f, damage);
+		}
+
+		private void OnGetHeal(object sender, int heal)
+		{
+			Debug.Log($"[{this.GetType().Name}] Getting Heal: {heal}!");
+			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
+			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
 		}
 	}
 }

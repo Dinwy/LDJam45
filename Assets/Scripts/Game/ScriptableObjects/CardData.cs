@@ -12,7 +12,9 @@ namespace LDJam45.Game
 		public Sprite Artwork;
 		public TargetType CardType;
 		public AttackType AttackType;
-		public int Damage;
+		public int Amount;
 		public sbyte Priority;
+		public CardClass CardClass;
+		public Guid OwnerID { get; set; }
 	}
 }

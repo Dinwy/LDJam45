@@ -16,10 +16,12 @@ namespace LDJam45.Game
 		private Vector3 originPos;
 
 		public CardData Card { get; set; }
+		private GameManager gameManager;
 
 		void Start()
 		{
 			originPos = transform.localPosition;
+			gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			MakeItBillboard();
 		}
 
@@ -58,7 +60,7 @@ namespace LDJam45.Game
 				return;
 			}
 
-			GameObject.Find(TargetGuid).GetComponent<UnitManager>()?.GetDamage(Card.Damage);
+			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card);
 
 			var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			gameManager.Callback(GameState.PlayerTurnEnd);
