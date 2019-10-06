@@ -17,6 +17,9 @@ namespace LDJam45.Game
 		[Header("Camera")]
 		public Camera MainCamera;
 
+		[Space()]
+		public SceneType SceneType;
+
 		private Vector3 offset;
 		private GameManager gameManager { get; set; }
 		private bool initialized = false;
@@ -51,11 +54,11 @@ namespace LDJam45.Game
 
 		private Tween GetIntroSequence()
 		{
-			Debug.Log("IntroSeq!");
 			var seq = DOTween.Sequence();
-			if (SceneManager.GetActiveScene().buildIndex == 2)
+
+			if (SceneType == SceneType.Tutorial)
 			{
-				Debug.Log("Tutorial!!");
+				Debug.Log("Scene type is tutorial");
 				seq.Append(textMessage.DOText("There was a boy", 2f));
 				seq.Append(CharacterSprite.DOColor(new Color(1, 1, 1, 1), 1f));
 				seq.Append(textMessage.DOText("               ", 1f));
