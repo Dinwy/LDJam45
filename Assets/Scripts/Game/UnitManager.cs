@@ -10,6 +10,9 @@ namespace LDJam45.Game
 		public UnitUI UnitUI;
 		public UserType UserType = UserType.Human;
 
+		// Default card
+		public CardData defaultCardData;
+
 		public List<CardData> Hands = new List<CardData>();
 		public Stack<CardData> Deck = new Stack<CardData>();
 
@@ -48,9 +51,19 @@ namespace LDJam45.Game
 
 		public void Draw()
 		{
+			// Draw default card when nothing on your deck
 			if (Deck.Count == 0)
 			{
 				Debug.LogWarning("No cards in the deck!");
+				Hands.Add(defaultCardData);
+				Debug.Log($"Card added: {defaultCardData.Name}, {Hands.Count}");
+
+				Debug.Log($"{UnitData.Name}, {UserType.ToString()}");
+
+				// Don't tirgger UI
+				if (UserType == UserType.Computer) return;
+
+				OnCardDraw?.Invoke(this, defaultCardData);
 				return;
 			}
 

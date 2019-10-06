@@ -866,6 +866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitData: {fileID: 11400000, guid: da6eb12e725307d4a9ecfc596b284d11, type: 2}
   UnitUI: {fileID: 1871593252}
+  UserType: 0
+  defaultCardData: {fileID: 11400000, guid: 9973c11216e9a55419ec0989b1806c1e, type: 2}
   Hands: []
 --- !u!114 &1871593252
 MonoBehaviour:

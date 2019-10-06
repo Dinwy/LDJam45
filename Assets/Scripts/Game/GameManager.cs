@@ -47,9 +47,6 @@ namespace LDJam45.Game
 		{
 			offset = MainCamera.transform.position - UserManager.PlayerUnit.transform.position;
 			DebugManager.Setup(this);
-
-			// Debug purpose
-			DebugManager.GiveMockDeck.onClick?.Invoke();
 		}
 
 		public void Callback(GameState state)
