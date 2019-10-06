@@ -16,5 +16,5 @@ MonoBehaviour:
   HP: 100
   Damage: 10
   Description: 
-  Artwork: {fileID: 21300000, guid: 26430af7b39d89843b4fc1e3f3723989, type: 3}
+  Artwork: {fileID: 21300000, guid: 5c273620bcf9a8d4d91b36f0d5309d7c, type: 3}
   Priority: 0

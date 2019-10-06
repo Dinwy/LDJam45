@@ -7,7 +7,7 @@ namespace LDJam45.Game
 	public class HandAreaManager : MonoBehaviour
 	{
 		private Vector3 Position = new Vector3(-1.5f, -0.75f, 3.2f);
-		private float gap = 1f;
+		private float gap = 0.6f;
 
 		public void Sort()
 		{

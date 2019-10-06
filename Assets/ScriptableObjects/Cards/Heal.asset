@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44864654813ff3343b4a3b4c58aa48f0, type: 3}
-  m_Name: Flamestrike
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  Name: Flamestrike
-  Description: Flamestrike
-  Artwork: {fileID: 21300000, guid: a1121d59f23f2a1409a04aa2ebf42547, type: 3}
+  Name: Heal
+  Description: Bare hand give basic damage.
+  Artwork: {fileID: 21300000, guid: 25e92051d092d7d48a67f867e73fc779, type: 3}
   CardType: 1
-  AttackType: 1
-  Damage: 10
+  AttackType: 0
+  Damage: 20
   Priority: 0

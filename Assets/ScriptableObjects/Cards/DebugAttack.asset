@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: DebugAttack
   Description: Debug attack
-  Artwork: {fileID: 21300000, guid: e600a2e94aa27fe4194a218e836e031d, type: 3}
+  Artwork: {fileID: 21300000, guid: 25e92051d092d7d48a67f867e73fc779, type: 3}
   CardType: 1
   AttackType: 1
   Damage: 1

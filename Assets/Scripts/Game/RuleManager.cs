@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 using DG.Tweening;
 using TMPro;
@@ -23,11 +22,11 @@ namespace LDJam45.Game
 
 		public void Setup(GameManager gm)
 		{
-			gameManager = gm;
+		gameManager = gm;
 			RegisterEvnets();
 		}
 
-		private async void OnStageChange(object sender, GameState gs)
+		private void OnStageChange(object sender, GameState gs)
 		{
 			var enemies = gameManager.MapManager.GetAllEnemies();
 

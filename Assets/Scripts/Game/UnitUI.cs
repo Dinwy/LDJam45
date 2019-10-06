@@ -45,9 +45,13 @@ namespace LDJam45.Game
 		private void OnCardDraw(object sender, Card card)
 		{
 			var go = GameObject.Instantiate(CardPrefab, Vector3.zero, Quaternion.identity);
+			go.GetComponent<Renderer>().material.mainTexture = card.Artwork.texture;
+
 			go.transform.SetParent(HandArea.transform, false);
 			Debug.Log($"[{this.GetType().Name}: Draw a card");
-			HandArea.GetComponent<HandAreaManager>()?.Sort();
+
+			// Temp. Sort.
+			HandArea.GetComponent<HandAreaManager>().Sort();
 		}
 
 		private void OnAttack(object sender, EventArgs e)
