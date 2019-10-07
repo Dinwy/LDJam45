@@ -26,6 +26,12 @@ namespace LDJam45.Game
 		[Space()]
 		public SceneType SceneType;
 
+		[Header("Reward")]
+		public GameObject CardPrefab;
+		public GameObject RewardPanel;
+		public Image RewardCardImage;
+		public TextMeshProUGUI Description;
+
 		private Vector3 offset;
 		private GameManager gameManager { get; set; }
 		private bool initialized = false;
@@ -86,6 +92,30 @@ namespace LDJam45.Game
 					break;
 				case GameState.BattleFinished:
 					GameObject.Find("HandArea").GetComponent<HandAreaManager>().ClearHands();
+					break;
+				case GameState.RewardPhase:
+					if (gameManager.MapManager.DoesRewardExists())
+					{
+						RewardPanel.SetActive(true);
+						RewardCardImage.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+						var seq1 = DOTween.Sequence();
+						var reward = gameManager.MapManager.GetReward();
+						RewardCardImage.sprite = gameManager.MapManager.GetReward().Artwork;
+						Description.text = reward.Description;
+						seq1.Append(RewardCardImage.rectTransform.DOScale(0.5f, 1f));
+						seq1.AppendInterval(1f);
+						seq1.Append(RewardCardImage.transform.DOMoveY(DeckIcon.transform.position.y, 1f));
+						seq1.Join(RewardCardImage.rectTransform.DOScale(0.04f, 1f).SetEase(Ease.InCubic));
+						seq1.AppendCallback(() =>
+						{
+							RewardPanel.SetActive(false);
+							gameManager.ChangeState(GameState.Movable);
+						});
+					}
+					else
+					{
+						gameManager.ChangeState(GameState.Movable);
+					}
 					break;
 				default:
 					break;

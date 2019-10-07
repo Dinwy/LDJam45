@@ -16,3 +16,5 @@ MonoBehaviour:
   Description: Basic Room with Lamia
   Units:
   - {fileID: 11400000, guid: 349410b5d89bd244790d6abec8d9f612, type: 2}
+  RewardCard:
+  - {fileID: 11400000, guid: cabb2a95fed9f19498bac2c62ab1f41a, type: 2}

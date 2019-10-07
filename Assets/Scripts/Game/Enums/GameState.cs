@@ -11,6 +11,7 @@ namespace LDJam45.Game
 		MoveToRoomFinished,
 		BattleBegin,
 		BattleFinished,
+		RewardPhase,
 		CardDrawPhase,
 		PlayerTurnStart,
 		PlayerTurnEnd,

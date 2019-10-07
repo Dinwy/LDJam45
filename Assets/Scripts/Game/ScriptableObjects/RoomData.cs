@@ -10,5 +10,6 @@ namespace LDJam45.Game
 		public string Name;
 		public string Description;
 		public UnitData[] Units;
+		public CardData[] RewardCard;
 	}
 }

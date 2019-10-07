@@ -96,7 +96,7 @@ namespace LDJam45.Game
 					}
 					else
 					{
-						gameManager.ChangeState(GameState.Movable);
+						gameManager.ChangeState(GameState.RewardPhase);
 					}
 					break;
 				case GameState.GameOver:

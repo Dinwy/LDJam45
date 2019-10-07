@@ -57,6 +57,17 @@ namespace LDJam45.Game
 			return roomInfos[currentPosition].RoomData.Units.Length > 0;
 		}
 
+		public bool DoesRewardExists()
+		{
+			if (currentPosition >= roomInfos.Count) return false;
+			return roomInfos[currentPosition].RoomData.RewardCard.Length > 0;
+		}
+
+		public CardData GetReward()
+		{
+			return roomInfos[currentPosition].RoomData.RewardCard[0];
+		}
+
 		public List<GameObject> GetAllEnemies()
 		{
 			return roomInfos[currentPosition].UnitGameObject;
