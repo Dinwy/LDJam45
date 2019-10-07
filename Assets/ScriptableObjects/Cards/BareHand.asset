@@ -17,6 +17,7 @@ MonoBehaviour:
   Artwork: {fileID: 21300000, guid: 93a3ec9a9437ac144a846626c60dff73, type: 3}
   CardType: 1
   AttackType: 0
-  Amount: 5
+  Amount: 7
   Priority: 0
+  CardAnimation: 0
   CardClass: 0
