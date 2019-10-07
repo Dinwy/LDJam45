@@ -23,14 +23,14 @@ namespace LDJam45
 			seq.Append(textMessage.DOText("LDJam45", 2f));
 			seq.Append(textMessage.DOText("       ", 2f));
 
-			if (PlayerPrefs.HasKey("tutorialFinished"))
-			{
-				seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
-			}
-			else
-			{
-				seq.AppendCallback(() => SceneManager.LoadSceneAsync(2));
-			};
+			seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
+			// if (PlayerPrefs.HasKey("tutorialFinished"))
+			// {
+			// }
+			// else
+			// {
+			// 	seq.AppendCallback(() => SceneManager.LoadSceneAsync(2));
+			// };
 		}
 
 		void Update()

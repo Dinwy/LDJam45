@@ -60,6 +60,9 @@ namespace LDJam45.Game
 		public bool DoesRewardExists()
 		{
 			if (currentPosition >= roomInfos.Count) return false;
+			if (roomInfos == null) return false;
+			if (roomInfos[currentPosition].RoomData == null) return false;
+			if (roomInfos[currentPosition].RoomData.RewardCard == null || roomInfos[currentPosition].RoomData.RewardCard.Length == 0) return false;
 			return roomInfos[currentPosition].RoomData.RewardCard.Length > 0;
 		}
 

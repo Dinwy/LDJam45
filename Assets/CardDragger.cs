@@ -105,6 +105,8 @@ namespace LDJam45.Game
 
 		void OnMouseUp()
 		{
+			var guid = Guid.Empty;
+			if (!Guid.TryParse(TargetGuid, out guid)) return;
 			if (TargetGuid == Guid.Empty.ToString())
 			{
 				Renderer.material.mainTexture = Card.Artwork.texture;
@@ -144,18 +146,12 @@ namespace LDJam45.Game
 			gameObject.GetComponent<MeshRenderer>().enabled = false;
 			handArea.GetComponent<HandAreaManager>().Sort();
 
-			try
+			ownerUnit.UseCard(guid, Card, () =>
 			{
-				ownerUnit.UseCard(Guid.Parse(TargetGuid), Card, () =>
-				{
-					gameManager.ChangeState(GameState.PlayerTurnEnd);
-					Destroy(gameObject);
-				});
-			}
-			catch (Exception e)
-			{
-				Debug.LogError(e);
-			}
+				gameManager.ChangeState(GameState.PlayerTurnEnd);
+				Destroy(gameObject);
+			});
+
 		}
 
 

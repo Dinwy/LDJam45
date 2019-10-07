@@ -91,8 +91,8 @@ namespace LDJam45.Game
 
 					if (gameManager.MapManager.IsLastRoom())
 					{
-						Debug.Log("Stage finished!");
-						StartCoroutine(OnStageFinished());
+						Debug.Log("Game finished!");
+						gameManager.GameUIManager.ShowEndScene();
 					}
 					else
 					{

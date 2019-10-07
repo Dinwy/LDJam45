@@ -8,25 +8,36 @@ namespace LDJam45
 {
 	public class TitleManager : MonoBehaviour
 	{
-		public Button WorldMap;
-		public Button Exit;
+		public Canvas Canvas;
+		public Button StartButton;
+		private bool gameStarted = false;
 
 		void Start()
 		{
-			WorldMap.onClick.AddListener(OnClickWorldMap);
-			Exit.onClick.AddListener(OnClickExit);
+			DOTween.To(() => Canvas.GetComponent<CanvasGroup>().alpha, x => Canvas.GetComponent<CanvasGroup>().alpha = x, 1, 3f).SetEase(Ease.InCubic);
+			StartButton.onClick.AddListener(StartGame);
+			var canvasGroup = StartButton.GetComponent<CanvasGroup>();
+			DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 1f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo);
 		}
 
 		void OnDestroy()
 		{
-			WorldMap.onClick.RemoveListener(OnClickWorldMap);
-			Exit.onClick.RemoveListener(OnClickExit);
+			StartButton.onClick.RemoveListener(StartGame);
 		}
 
-		public void OnClickWorldMap()
+		public void StartGame()
 		{
-			// Which is Game
-			SceneManager.LoadSceneAsync(2);
+			DOTween.To(() => Canvas.GetComponent<CanvasGroup>().alpha, x => Canvas.GetComponent<CanvasGroup>().alpha = x, 0, 3f)
+			.OnComplete(() => SceneManager.LoadSceneAsync(2));
+		}
+
+		void Update()
+		{
+			if (!gameStarted && Input.anyKeyDown)
+			{
+				gameStarted = true;
+				StartGame();
+			}
 		}
 
 		public void OnClickExit()

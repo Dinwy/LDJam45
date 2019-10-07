@@ -14,6 +14,8 @@ namespace LDJam45.Game
 		public Canvas Canvas;
 		public GameObject BlackPanel;
 		public TextMeshProUGUI IntroText;
+		public GameObject EndPanel;
+		public TextMeshProUGUI EndText;
 		public Text textMessage;
 
 		[Header("Camera")]
@@ -36,6 +38,7 @@ namespace LDJam45.Game
 		private GameManager gameManager { get; set; }
 		private bool initialized = false;
 		private bool animating = false;
+		private bool isGameEnded = false;
 
 		// Temp
 		private GameObject handArea;
@@ -54,6 +57,21 @@ namespace LDJam45.Game
 		{
 			gameManager = gm;
 			RegisterEvnets();
+		}
+
+		public void ShowEndScene()
+		{
+			EndPanel.SetActive(true);
+			var seq = DOTween.Sequence();
+			seq.Append(DOTween.To(() => EndPanel.GetComponent<CanvasGroup>().alpha, x => EndPanel.GetComponent<CanvasGroup>().alpha = x, 1, 1f));
+			textMessage.text = "";
+			seq.Append(textMessage.DOText("A little boy beat all the enemies", 2f));
+			seq.Append(textMessage.DOText("                                 ", 1f));
+			seq.Append(textMessage.DOText("Another advanture will begin soon", 2f));
+			seq.Append(textMessage.DOText("                                 ", 1f));
+			seq.Append(textMessage.DOText("Thank you for playing the game!", 5f));
+			seq.Append(textMessage.DOText("                               ", 10f));
+			seq.AppendCallback(() => SceneManager.LoadSceneAsync(1));
 		}
 
 		private float blinkDuration = 1f;
@@ -131,6 +149,7 @@ namespace LDJam45.Game
 
 		private Tween GetIntroSequence()
 		{
+			isGameEnded = true;
 			var seq = DOTween.Sequence();
 
 			if (SceneType == SceneType.Tutorial)
@@ -158,6 +177,9 @@ namespace LDJam45.Game
 
 		void Update()
 		{
+			if (!isGameEnded) return;
+			EndText.text = textMessage.text;
+
 			if (initialized) return;
 			IntroText.text = textMessage.text;
 		}

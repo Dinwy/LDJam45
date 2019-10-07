@@ -63,13 +63,6 @@ namespace LDJam45.Game
 			}
 		}
 
-		private IEnumerator OnStageFinished()
-		{
-			yield return new WaitForSeconds(2f);
-
-			SceneManager.LoadSceneAsync(1);
-		}
-
 		private void RegisterEvnets()
 		{
 			GameManager.OnStageChange += OnStageChange;

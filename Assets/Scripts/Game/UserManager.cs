@@ -15,6 +15,8 @@ namespace LDJam45.Game
 		public UnitManager PlayerUnitManager { get; set; }
 		private GameManager gameManager { get; set; }
 
+		private Vector3 position;
+
 		public UserManager()
 		{
 			ID = Guid.NewGuid();
@@ -46,6 +48,13 @@ namespace LDJam45.Game
 					PlayerUnitManager.Setup();
 					PlayerUnitManager.UserType = UserType.Human;
 					gameManager.ChangeState(GameState.InitializeFinished);
+					break;
+				case GameState.BattleBegin:
+					position = PlayerUnit.transform.position;
+					break;
+				case GameState.PlayerTurnStart:
+				case GameState.BattleFinished:
+					PlayerUnit.transform.position = position;
 					break;
 				default:
 					break;
