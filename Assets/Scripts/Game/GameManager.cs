@@ -17,6 +17,7 @@ namespace LDJam45.Game
 		public event EventHandler<GameState> OnStageChange;
 
 		public GameState GameState { get; private set; }
+		public CardAnimationFactory CardAnimationFactory { get; private set; }
 
 		[Header("Settings")]
 		public GameMode GameMode;
@@ -32,6 +33,8 @@ namespace LDJam45.Game
 			RuleManager.Setup(this);
 			GameUIManager.Setup(this);
 			MonsterCardManager.Setup(this);
+
+			CardAnimationFactory = new CardAnimationFactory();
 
 			OnStageChange += (object sender, GameState gs) =>
 			{

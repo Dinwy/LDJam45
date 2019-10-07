@@ -66,16 +66,23 @@ namespace LDJam45.Game
 			Debug.LogWarning($"[{this.GetType().Name}] OnAttack!");
 
 			var unit = sender as UnitManager;
-			var dir = 0.5f;
-			dir = unit.UserType == UserType.Computer ? -1 : 1;
-			var duration = 0.5f;
 
+			var dir = (attackArgs.Receiver.transform.position - attackArgs.Attacker.transform.position).normalized;
+
+			var duration = 0.5f;
 			var sequence = DOTween.Sequence();
-			sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 1 * dir, duration)
-			.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 1 * dir, duration)));
+
+			switch (attackArgs.CardData.CardAnimation)
+			{
+				case CardAnimation.NormalAttack:
+				default:
+					sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 2 * dir.x, duration)
+					.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 2 * dir.x, duration)));
+					break;
+
+			}
 
 			attackArgs.Receiver.GetDamage(attackArgs.CardData.Amount);
-			
 			sequence.OnComplete(() => attackArgs.Callback());
 		}
 
@@ -98,11 +105,12 @@ namespace LDJam45.Game
 
 		private void OnGetDamage(object sender, int damage)
 		{
+			var seq = DOTween.Sequence();
 			Debug.LogWarning("OnGetDamage!");
 			Debug.LogWarning($"[{this.GetType().Name}] Getting {damage} damage!");
-			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
+			seq.Append(Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f));
 			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
-			transform.DOShakePosition(0.5f, 1, damage);
+			seq.Append(transform.DOShakePosition(0.5f, 1, damage));
 		}
 
 		private void OnGetHeal(object sender, int heal)

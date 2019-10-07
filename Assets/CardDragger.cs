@@ -123,11 +123,18 @@ namespace LDJam45.Game
 			gameObject.GetComponent<MeshRenderer>().enabled = false;
 			handArea.GetComponent<HandAreaManager>().Sort();
 
-			ownerUnit.UseCard(Guid.Parse(TargetGuid), Card, () =>
+			try
 			{
-				gameManager.ChangeState(GameState.PlayerTurnEnd);
-				Destroy(gameObject);
-			});
+				ownerUnit.UseCard(Guid.Parse(TargetGuid), Card, () =>
+				{
+					gameManager.ChangeState(GameState.PlayerTurnEnd);
+					Destroy(gameObject);
+				});
+			}
+			catch (Exception e)
+			{
+				Debug.LogError(e);
+			}
 		}
 
 

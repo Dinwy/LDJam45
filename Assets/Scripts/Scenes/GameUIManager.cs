@@ -136,7 +136,10 @@ namespace LDJam45.Game
 		{
 			if (initialized)
 			{
-				MainCamera.transform.position = gameManager.UserManager.PlayerUnit.transform.position + offset;
+				if (gameManager.GameState == GameState.MoveToRoom)
+				{
+					MainCamera.transform.position = gameManager.UserManager.PlayerUnit.transform.position + offset;
+				}
 			}
 		}
 
