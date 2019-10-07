@@ -21,6 +21,7 @@ namespace LDJam45.Game
 
 		[Header("UIButton")]
 		public Button MoveNext;
+		public GameObject DeckIcon;
 
 		[Space()]
 		public SceneType SceneType;
@@ -82,6 +83,9 @@ namespace LDJam45.Game
 						blinkTween.OnComplete(null);
 						blinkTween.SetAutoKill(true);
 					}
+					break;
+				case GameState.BattleFinished:
+					GameObject.Find("HandArea").GetComponent<HandAreaManager>().ClearHands();
 					break;
 				default:
 					break;

@@ -18,6 +18,7 @@ namespace LDJam45.Game
 
 		public event EventHandler<CardData> OnCardDraw;
 		public event EventHandler<CardData> OnCardAddedToDeck;
+		public event EventHandler<Action> OnCardRemoved;
 		public event EventHandler<AttackArgs> OnAttack;// Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
@@ -125,7 +126,6 @@ namespace LDJam45.Game
 				default:
 					break;
 			}
-
 		}
 
 		public void GetDamage(int amount)

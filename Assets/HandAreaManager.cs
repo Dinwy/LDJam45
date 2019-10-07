@@ -20,5 +20,13 @@ namespace LDJam45.Game
 				idx++;
 			}
 		}
+
+		public void ClearHands()
+		{
+			foreach (Transform child in transform)
+			{
+				Destroy(child.gameObject);
+			}
+		}
 	}
 }

@@ -20,6 +20,12 @@ namespace LDJam45.Game
 		// Temp
 		public GameObject CardPrefab;
 		private GameObject HandArea { get; set; }
+		private GameManager gameManager;
+
+		void Start()
+		{
+			gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		}
 
 		public void Setup(UnitManager um)
 		{
@@ -50,10 +56,17 @@ namespace LDJam45.Game
 			// Set owner ID
 			card.OwnerID = unit.ID;
 
+			var deckIcon = gameManager.GameUIManager.DeckIcon;
 			var go = GameObject.Instantiate(CardPrefab, Vector3.zero, Quaternion.identity);
+			go.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+			go.transform.position = deckIcon.transform.position;
+			go.transform.DOScale(1, 1f);
+			// go.transform.
+
+			go.transform.SetParent(HandArea.transform, false);
+
 			go.GetComponent<Renderer>().material.mainTexture = card.Artwork.texture;
 			go.GetComponent<CardDragger>().Card = card;
-			go.transform.SetParent(HandArea.transform, false);
 
 			Debug.Log($"[{this.GetType().Name}: Draw a card, {card.Name}, {card.Amount} {card.CardClass}");
 
