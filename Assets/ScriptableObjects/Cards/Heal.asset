@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   Name: Heal
-  Description: Heal 20
+  Description: Heal self 20
   Artwork: {fileID: 21300000, guid: 275dd318b38eba8498df1758b7ed2765, type: 3}
-  CardType: 1
+  CardType: 0
   AttackType: 0
   Amount: 20
   Priority: 0

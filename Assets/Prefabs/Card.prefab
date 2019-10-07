@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2216626934016985049}
   - component: {fileID: 2216626934016985048}
   - component: {fileID: 2216626934016985031}
-  - component: {fileID: 2216626934016985030}
   - component: {fileID: 7882163827233461350}
+  - component: {fileID: 4723737117435795300}
   m_Layer: 9
   m_Name: Card
   m_TagString: Untagged
@@ -80,20 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2216626934016985030
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2216626934016985029}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &7882163827233461350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,16 @@ MonoBehaviour:
   TargetCircle_Yes: {fileID: 21300000, guid: 6683c621b1a568540959ab2c73feb824, type: 3}
   TargetCircle_No: {fileID: 21300000, guid: 1e0cbe2d289c20045a65d8b427347548, type: 3}
   TargetGuid: 
+--- !u!65 &4723737117435795300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216626934016985029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 1.0000001, z: 0.000000014901161}
+  m_Center: {x: 0.00000023841858, y: 0, z: -0.0000019073486}

@@ -96,12 +96,13 @@ namespace LDJam45.Game
 				case GameState.RewardPhase:
 					if (gameManager.MapManager.DoesRewardExists())
 					{
+						var rewardCard = gameManager.MapManager.GetReward();
+						gameManager.UserManager.PlayerUnitManager.AddToDeck(rewardCard);
 						RewardPanel.SetActive(true);
 						RewardCardImage.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 						var seq1 = DOTween.Sequence();
-						var reward = gameManager.MapManager.GetReward();
 						RewardCardImage.sprite = gameManager.MapManager.GetReward().Artwork;
-						Description.text = reward.Description;
+						Description.text = rewardCard.Description;
 						seq1.Append(RewardCardImage.rectTransform.DOScale(0.5f, 1f));
 						seq1.AppendInterval(1f);
 						seq1.Append(RewardCardImage.transform.DOMoveY(DeckIcon.transform.position.y, 1f));

@@ -15,7 +15,7 @@ namespace LDJam45.Game
 			foreach (Transform child in transform)
 			{
 				if (!child.gameObject.GetComponent<MeshRenderer>().enabled) continue;
-				var pos = new Vector3(Position.x + gap * idx, Position.y, Position.z);
+				var pos = new Vector3(Position.x + gap * idx, Position.y, Position.z + (-idx * 0.1f * gap));
 				child.localPosition = pos;
 				idx++;
 			}

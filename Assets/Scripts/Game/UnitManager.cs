@@ -19,10 +19,10 @@ namespace LDJam45.Game
 		public event EventHandler<CardData> OnCardDraw;
 		public event EventHandler<CardData> OnCardAddedToDeck;
 		public event EventHandler<Action> OnCardRemoved;
-		public event EventHandler<AttackArgs> OnAttack;// Need to change arg to Card
+		public event EventHandler<CardArgs> OnAttack;// Need to change arg to Card
+		public event EventHandler<CardArgs> OnGetHeal; // Need to change arg to Card
 		public event EventHandler OnUnitDied;
 		public event EventHandler<int> OnGetDamage; // Need to change arg to Card
-		public event EventHandler<int> OnGetHeal; // Need to change arg to Card
 
 		public Guid ID { get; private set; } = Guid.NewGuid();
 		public int HP { get; private set; }
@@ -112,16 +112,18 @@ namespace LDJam45.Game
 			var cf = new CardFactory();
 			var act = cf.GetAction(card.CardClass);
 			isInAction = true;
+			var target = GameObject.Find(targetId.ToString()).GetComponent<UnitManager>();
+			var args = new CardArgs(this, target, card, callBack);
 
 			switch (card.CardClass)
 			{
 				case CardClass.Damage:
-					var target = GameObject.Find(targetId.ToString()).GetComponent<UnitManager>();
-					var args = new AttackArgs(this, target, card, callBack);
 					OnAttack?.Invoke(this, args);
 					break;
 				case CardClass.Heal:
-					GameObject.Find(targetId.ToString()).GetComponent<UnitManager>().GetHeal(card.Amount);
+					this.HP += card.Amount;
+
+					OnGetHeal?.Invoke(this, args);
 					break;
 				default:
 					break;
@@ -143,22 +145,15 @@ namespace LDJam45.Game
 				OnUnitDied?.Invoke(this, EventArgs.Empty);
 			}
 		}
-
-		public void GetHeal(int amount)
-		{
-			this.HP += amount;
-
-			OnGetHeal?.Invoke(this, amount);
-		}
 	}
 
-	public class AttackArgs : EventArgs
+	public class CardArgs : EventArgs
 	{
 		public UnitManager Attacker;
 		public UnitManager Receiver;
 		public CardData CardData;
 		public Action Callback;
-		public AttackArgs(UnitManager attacker, UnitManager receiver, CardData data, Action callBack)
+		public CardArgs(UnitManager attacker, UnitManager receiver, CardData data, Action callBack)
 		{
 			Attacker = attacker;
 			Receiver = receiver;

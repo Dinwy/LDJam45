@@ -73,10 +73,21 @@ namespace LDJam45.Game
 						{
 							Renderer.material.mainTexture = TargetCircle_No.texture;
 						}
+						else if (Card.CardClass == CardClass.Heal)
+						{
+							Renderer.material.mainTexture = TargetCircle_Yes.texture;
+						}
 					}
 					else
 					{
-						Renderer.material.mainTexture = TargetCircle_Yes.texture;
+						if (Card.CardClass == CardClass.Heal)
+						{
+							Renderer.material.mainTexture = TargetCircle_No.texture;
+						}
+						else
+						{
+							Renderer.material.mainTexture = TargetCircle_Yes.texture;
+						}
 					}
 				}
 			}
@@ -84,7 +95,6 @@ namespace LDJam45.Game
 			{
 				TargetGuid = Guid.Empty.ToString();
 				Renderer.material.mainTexture = TargetCircle.texture;
-
 			}
 		}
 
@@ -109,6 +119,17 @@ namespace LDJam45.Game
 				if (Card.CardClass == CardClass.Damage)
 				{
 					Debug.Log("Cannot damage myself");
+					Renderer.material.mainTexture = Card.Artwork.texture;
+
+					handArea.GetComponent<HandAreaManager>().Sort();
+					return;
+				}
+			}
+			else
+			{
+				if (Card.CardClass == CardClass.Heal)
+				{
+					Debug.Log("Cannot Heal Enemy!");
 					Renderer.material.mainTexture = Card.Artwork.texture;
 
 					handArea.GetComponent<HandAreaManager>().Sort();

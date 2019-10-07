@@ -47,6 +47,12 @@ namespace LDJam45.Game
 			UnitManager.OnGetDamage += OnGetDamage;
 			UnitManager.OnGetHeal += OnGetHeal;
 			UnitManager.OnUnitDied += OnUnitDied;
+			UnitManager.OnCardAddedToDeck += OnCardAddedToDeck;
+		}
+
+		private void OnCardAddedToDeck(object sender, CardData card)
+		{
+			Debug.LogWarning($"{card.Name} Added to the deck");
 		}
 
 		private void OnCardDraw(object sender, CardData card)
@@ -74,7 +80,7 @@ namespace LDJam45.Game
 			HandArea.GetComponent<HandAreaManager>().Sort();
 		}
 
-		private void OnAttack(object sender, AttackArgs attackArgs)
+		private void OnAttack(object sender, CardArgs attackArgs)
 		{
 			Debug.LogWarning($"[{this.GetType().Name}] OnAttack!");
 
@@ -126,11 +132,19 @@ namespace LDJam45.Game
 			seq.Append(transform.DOShakePosition(0.5f, 1, damage));
 		}
 
-		private void OnGetHeal(object sender, int heal)
+		private void OnGetHeal(object sender, CardArgs cardArgs)
 		{
-			Debug.Log($"[{this.GetType().Name}] Getting Heal: {heal}!");
-			Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f);
+			var seq = DOTween.Sequence();
+
+			Debug.Log($"[{this.GetType().Name}] Getting Heal: {cardArgs.CardData.Amount}!");
+			seq.Append(Slider.DOValue((float)UnitManager.HP / (float)UnitManager.UnitData.HP, 1f));
 			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
+
+			Debug.LogWarning($"[{this.GetType().Name}] OnAttack!");
+
+			var unit = sender as UnitManager;
+
+			seq.OnComplete(() => cardArgs.Callback());
 		}
 	}
 }
