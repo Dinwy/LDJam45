@@ -34,6 +34,17 @@ namespace LDJam45.Game
 			HP.text = $"{UnitManager.HP} / {UnitManager.UnitData.HP}";
 			GetComponent<SpriteRenderer>().sprite = um.UnitData.Artwork;
 
+			// Temp
+			if (um.UnitData.Name != "Boy" && um.UnitData.name != "MonsterA")
+			{
+				transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+				Canvas.transform.position = new Vector3(Canvas.transform.position.x, Canvas.transform.position.y + 0.5f, Canvas.transform.position.z);
+			}
+
+			// Resize Collider
+			var S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+			gameObject.GetComponent<BoxCollider>().size = S;
+
 			RegisterEvents();
 
 			// Temp
@@ -48,6 +59,17 @@ namespace LDJam45.Game
 			UnitManager.OnGetHeal += OnGetHeal;
 			UnitManager.OnUnitDied += OnUnitDied;
 			UnitManager.OnCardAddedToDeck += OnCardAddedToDeck;
+			UnitManager.OnExhausted += OnExhausted;
+		}
+
+		private void OnExhausted(object sender, Action callback)
+		{
+			var unit = sender as UnitManager;
+			gameManager.DialogManager.UpdateDialog($"{unit.UnitData.Name} is exhausted!");
+
+			var seq = DOTween.Sequence();
+			seq.AppendInterval(1f);
+			seq.AppendCallback(() => callback());
 		}
 
 		private void OnCardAddedToDeck(object sender, CardData card)

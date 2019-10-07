@@ -56,7 +56,7 @@ namespace LDJam45.Game
 
 		private void GiveMockDeckToUser()
 		{
-			gameManager.UserManager.PlayerUnitManager.Deck = new Stack<CardData>(gameManager.MonsterCardManager.GetCardList("Boy").CardList);
+			gameManager.UserManager.PlayerUnitManager.Deck = new List<CardData>(gameManager.MonsterCardManager.GetCardList("Boy").CardList);
 		}
 	}
 }

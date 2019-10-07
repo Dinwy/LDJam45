@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44864654813ff3343b4a3b4c58aa48f0, type: 3}
-  m_Name: Heal
+  m_Name: Lamia_Nail
   m_EditorClassIdentifier: 
-  Name: Heal
-  Description: Heal self 50
-  Artwork: {fileID: 21300000, guid: 275dd318b38eba8498df1758b7ed2765, type: 3}
-  CardType: 0
-  AttackType: 1
-  Amount: 50
+  Name: Nail Attack
+  Description: Attack with tail give 14 damage
+  Artwork: {fileID: 21300000, guid: c64c03373b32587448cb72c4126fb44d, type: 3}
+  CardType: 1
+  AttackType: 0
+  Amount: 14
   Priority: 0
-  CardAnimation: 1
-  CardClass: 1
+  CardAnimation: 0
+  CardClass: 0

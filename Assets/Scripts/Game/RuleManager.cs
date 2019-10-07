@@ -38,7 +38,7 @@ namespace LDJam45.Game
 					{
 						enemy.transform.SetParent(EnemyFields.transform);
 						var enemyUnit = enemy.GetComponent<UnitManager>();
-						enemyUnit.Deck = new Stack<CardData>(gameManager.MonsterCardManager.GetCardList(enemyUnit.UnitData.Name).CardList);
+						enemyUnit.Deck = new List<CardData>(gameManager.MonsterCardManager.GetCardList(enemyUnit.UnitData.Name).CardList);
 					}
 
 					// Force changing state
@@ -133,14 +133,16 @@ namespace LDJam45.Game
 
 				enemyUnit.Draw();
 				Debug.LogWarning($"{enemyUnit.Hands[0].Name}: Drawn");
+				var random = new System.Random();
+				var idx = random.Next(enemyUnit.Deck.Count);
+				var card = enemyUnit.Deck[idx];
 				enemyUnit.UseCard(gameManager.UserManager.PlayerUnitManager.ID,
-				enemyUnit.Hands[0],
-				Count);
+				card, enemyCallback);
 			}
 		}
 
 		private int enemyCount = 0;
-		private void Count()
+		private void enemyCallback()
 		{
 			enemyCount--;
 			if (enemyCount == 0) gameManager.ChangeState(GameState.EnemyTurnEnd);

@@ -105,10 +105,13 @@ namespace LDJam45.Game
 						Description.text = rewardCard.Description;
 						seq1.Append(RewardCardImage.rectTransform.DOScale(0.5f, 1f));
 						seq1.AppendInterval(1f);
+						var originalPosition = RewardCardImage.transform.position;
 						seq1.Append(RewardCardImage.transform.DOMoveY(DeckIcon.transform.position.y, 1f));
 						seq1.Join(RewardCardImage.rectTransform.DOScale(0.04f, 1f).SetEase(Ease.InCubic));
 						seq1.AppendCallback(() =>
 						{
+							// Reset the position
+							RewardCardImage.transform.position = originalPosition;
 							RewardPanel.SetActive(false);
 							gameManager.ChangeState(GameState.Movable);
 						});

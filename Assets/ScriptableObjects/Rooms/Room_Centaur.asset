@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00e70ed33f01474a9e14af5cbd68ca3, type: 3}
-  m_Name: Room_Cyclops
+  m_Name: Room_Centaur
   m_EditorClassIdentifier: 
-  Name: Cyclops room
-  Description: Cyclops room
+  Name: Centaur Room
+  Description: Centaur Room
   Units:
-  - {fileID: 11400000, guid: d8f21486bc6581a4a9d324556cbf8b3c, type: 2}
+  - {fileID: 11400000, guid: 349410b5d89bd244790d6abec8d9f612, type: 2}
+  - {fileID: 11400000, guid: f2b2d3ff58f37f44989e394b17dc6512, type: 2}
   - {fileID: 11400000, guid: 349410b5d89bd244790d6abec8d9f612, type: 2}
   RewardCard:
   - {fileID: 11400000, guid: 3992d75fe9a53db419b5b7b31f72bf5e, type: 2}

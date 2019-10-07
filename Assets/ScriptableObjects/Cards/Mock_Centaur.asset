@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e870a66d6a5f2544dbcb180e4f0c01d2, type: 3}
-  m_Name: Mock_Cyclops
+  m_Name: Mock_Centaur
   m_EditorClassIdentifier: 
   CardList:
   - {fileID: 11400000, guid: 5c6ad50800a6473418575882b701fb97, type: 2}
+  - {fileID: 11400000, guid: 0fdacbfe839f757418d3532edafd3eb0, type: 2}
+  - {fileID: 11400000, guid: 3992d75fe9a53db419b5b7b31f72bf5e, type: 2}
+  - {fileID: 11400000, guid: 7161dab26efc028448486fbedceacb6a, type: 2}
