@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,8 +32,10 @@ namespace LDJam45.Game
 
 		void OnMouseDown()
 		{
+			var scrPos = Camera.main.WorldToScreenPoint(transform.position);
+			var distance = new Vector2(scrPos.x, scrPos.y) - new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0) + new Vector3(distance.x, distance.y, screenPoint.z));
 		}
 
 		void OnMouseDrag()
