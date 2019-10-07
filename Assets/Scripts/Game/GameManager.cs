@@ -16,6 +16,8 @@ namespace LDJam45.Game
 
 		public event EventHandler<GameState> OnStageChange;
 
+		public GameState GameState { get; private set; }
+
 		[Header("Settings")]
 		public GameMode GameMode;
 
@@ -31,12 +33,27 @@ namespace LDJam45.Game
 			GameUIManager.Setup(this);
 			MonsterCardManager.Setup(this);
 
+			OnStageChange += (object sender, GameState gs) =>
+			{
+				Debug.Log($"[{this.GetType().Name}] State changed from {GameState} to {gs}");
+			};
+
 			OnStageChange?.Invoke(this, GameState.Intro);
 		}
 
-		public void Callback(GameState state)
+		public void ChangeState(GameState gameState)
 		{
-			OnStageChange?.Invoke(this, state);
+			Debug.Log($"[{this.GetType().Name}] State changed from {GameState} to {gameState}");
+
+			if (gameState == GameState.InitializeFinished)
+			{
+				OnStageChange?.Invoke(this, gameState);
+				ChangeState(GameState.Movable);
+				return;
+
+			}
+			GameState = gameState;
+			OnStageChange?.Invoke(this, gameState);
 		}
 
 		public void CheckRoom()

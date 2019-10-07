@@ -6,6 +6,7 @@ namespace LDJam45.Game
 		Intro,
 		InitializeGame,
 		InitializeFinished,
+		Movable,
 		MoveToRoom,
 		MoveToRoomFinished,
 		BattleBegin,

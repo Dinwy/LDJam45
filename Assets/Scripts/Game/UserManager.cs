@@ -45,7 +45,7 @@ namespace LDJam45.Game
 					PlayerUnit.name = PlayerUnitManager.ID.ToString();
 					PlayerUnitManager.Setup();
 					PlayerUnitManager.UserType = UserType.Human;
-					gameManager.Callback(GameState.InitializeFinished);
+					gameManager.ChangeState(GameState.InitializeFinished);
 					break;
 				default:
 					break;

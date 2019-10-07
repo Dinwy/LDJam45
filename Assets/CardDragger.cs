@@ -113,7 +113,7 @@ namespace LDJam45.Game
 
 			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card, () =>
 			{
-				gameManager.Callback(GameState.PlayerTurnEnd);
+				gameManager.ChangeState(GameState.PlayerTurnEnd);
 				Destroy(gameObject);
 			});
 		}

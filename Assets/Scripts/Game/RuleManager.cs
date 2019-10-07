@@ -42,7 +42,7 @@ namespace LDJam45.Game
 					}
 
 					// Force changing state
-					gameManager.Callback(GameState.PlayerTurnStart);
+					gameManager.ChangeState(GameState.PlayerTurnStart);
 					break;
 				case GameState.PlayerTurnStart:
 					Debug.LogWarning("Turnstart");
@@ -63,11 +63,11 @@ namespace LDJam45.Game
 
 					if (howManyDead == enemies.Count)
 					{
-						gameManager.Callback(GameState.BattleFinished);
+						gameManager.ChangeState(GameState.BattleFinished);
 						return;
 					}
 
-					gameManager.Callback(GameState.EnemyTurnStart);
+					gameManager.ChangeState(GameState.EnemyTurnStart);
 					break;
 				case GameState.EnemyTurnStart:
 					StartCoroutine(EnemyLogic());
@@ -75,11 +75,11 @@ namespace LDJam45.Game
 				case GameState.EnemyTurnEnd:
 					if (gameManager.UserManager.PlayerUnitManager.IsDead)
 					{
-						gameManager.Callback(GameState.GameOver);
+						gameManager.ChangeState(GameState.GameOver);
 					}
 					else
 					{
-						gameManager.Callback(GameState.PlayerTurnStart);
+						gameManager.ChangeState(GameState.PlayerTurnStart);
 					}
 					break;
 				case GameState.BattleFinished:
@@ -89,6 +89,10 @@ namespace LDJam45.Game
 					{
 						Debug.Log("Stage finished!");
 						StartCoroutine(OnStageFinished());
+					}
+					else
+					{
+						gameManager.ChangeState(GameState.Movable);
 					}
 					break;
 				case GameState.GameOver:
@@ -135,7 +139,7 @@ namespace LDJam45.Game
 		private void Count()
 		{
 			enemyCount--;
-			if (enemyCount == 0) gameManager.Callback(GameState.EnemyTurnEnd);
+			if (enemyCount == 0) gameManager.ChangeState(GameState.EnemyTurnEnd);
 		}
 
 		private void RegisterEvnets()

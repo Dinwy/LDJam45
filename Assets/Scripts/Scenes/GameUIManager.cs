@@ -17,12 +17,16 @@ namespace LDJam45.Game
 		[Header("Camera")]
 		public Camera MainCamera;
 
+		[Header("UIButton")]
+		public Button MoveNext;
+
 		[Space()]
 		public SceneType SceneType;
 
 		private Vector3 offset;
 		private GameManager gameManager { get; set; }
 		private bool initialized = false;
+		private bool animating = false;
 
 		void Awake()
 		{
@@ -47,7 +51,7 @@ namespace LDJam45.Game
 					seq.AppendCallback(() =>
 					{
 						BlackPanel.SetActive(false);
-						gameManager.Callback(GameState.InitializeGame);
+						gameManager.ChangeState(GameState.InitializeGame);
 					});
 					break;
 				case GameState.InitializeFinished:
@@ -113,6 +117,37 @@ namespace LDJam45.Game
 		private void RegisterEvnets()
 		{
 			gameManager.OnStageChange += OnStageChange;
+			MoveNext.onClick.AddListener(MoveToNextRoom);
+		}
+
+		private void MoveToNextRoom()
+		{
+			if (animating)
+			{
+				Debug.LogWarning("Don't move while animating");
+
+				return;
+			}
+
+			if (gameManager.GameState != GameState.Movable)
+			{
+				Debug.LogWarning("Don't move when not movable state");
+
+				return;
+			}
+
+			Debug.LogWarning("Move");
+			animating = true;
+
+			var seq = gameManager.UserManager.MoveToNextRoom();
+			seq.OnComplete(() =>
+			{
+				animating = false;
+				gameManager.ChangeState(GameState.MoveToRoomFinished);
+			});
+
+			// Trigger event
+			gameManager.ChangeState(GameState.MoveToRoom);
 		}
 	}
 }

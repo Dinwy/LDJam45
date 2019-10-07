@@ -16,7 +16,6 @@ namespace LDJam45.Game
 		public Button GiveMockDeck;
 		public Button Draw;
 
-
 		private GameManager gameManager { get; set; }
 		private bool animating = false;
 
@@ -48,11 +47,11 @@ namespace LDJam45.Game
 			seq.OnComplete(() =>
 			{
 				animating = false;
-				gameManager.Callback(GameState.MoveToRoomFinished);
+				gameManager.ChangeState(GameState.MoveToRoomFinished);
 			});
 
 			// Trigger event
-			gameManager.Callback(GameState.MoveToRoom);
+			gameManager.ChangeState(GameState.MoveToRoom);
 		}
 
 		private void GiveMockDeckToUser()
