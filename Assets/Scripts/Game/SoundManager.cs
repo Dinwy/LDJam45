@@ -20,7 +20,7 @@ namespace LDJam45.Game
 		{
 			RegisterEvnets();
 			BattleTrack.volume = 0;
-			BattleTrack.time = UnityEngine.Random.Range(0, BattleTrack.clip.length);
+			BattleTrack.time = UnityEngine.Random.Range(0, BattleTrack.clip.length / 2);
 			BattleTrack.Play();
 		}
 
