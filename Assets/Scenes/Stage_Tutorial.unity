@@ -526,7 +526,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbcb9ebc0cb47ca4c9af21d36caac6e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: af55498647dee3343b5c53e48747fb02, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -625,7 +625,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 292996654}
-  BattleTrack: {fileID: 292996661}
+  AudioSource: {fileID: 292996661}
+  AmbientTrack: {fileID: 8300000, guid: af55498647dee3343b5c53e48747fb02, type: 3}
+  BattleTrack: {fileID: 8300000, guid: fbcb9ebc0cb47ca4c9af21d36caac6e3, type: 3}
 --- !u!114 &292996663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +642,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MockCardList: {fileID: 11400000, guid: b83dc43fd69158c42bffb15df4358998, type: 2}
   MockCardList_Lamia: {fileID: 11400000, guid: fc6f75499ae23af46b3aff90f976ef96, type: 2}
+  MockCardList_Cyclops: {fileID: 11400000, guid: 49e43fca4022fbd418c1802a7500c407,
+    type: 2}
+  MockCardList_Centaur: {fileID: 11400000, guid: fc6f75499ae23af46b3aff90f976ef96,
+    type: 2}
   MockCardList_MonsterA: {fileID: 11400000, guid: ba79ac45231cab34cba5ed1d2c905a45,
     type: 2}
 --- !u!1001 &348171103

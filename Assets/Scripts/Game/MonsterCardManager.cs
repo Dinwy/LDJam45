@@ -16,6 +16,8 @@ namespace LDJam45.Game
 		[Header("Card Data")]
 		public MockCardList MockCardList;
 		public MockCardList MockCardList_Lamia;
+		public MockCardList MockCardList_Cyclops;
+		public MockCardList MockCardList_Centaur;
 		public MockCardList MockCardList_MonsterA;
 
 		public Dictionary<string, MockCardList> CardDict;
@@ -30,6 +32,8 @@ namespace LDJam45.Game
 			{
 				{"Boy", MockCardList},
 				{"Lamia", MockCardList_Lamia},
+				{"Cyclops", MockCardList_Cyclops},
+				{"Centaur", MockCardList_Centaur},
 				{"MonsterA", MockCardList_MonsterA},
 			};
 		}
