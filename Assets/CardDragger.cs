@@ -79,8 +79,6 @@ namespace LDJam45.Game
 						Renderer.material.mainTexture = TargetCircle_Yes.texture;
 					}
 				}
-
-				Debug.Log($"Hit target: {hit.transform.name}");
 			}
 			else
 			{

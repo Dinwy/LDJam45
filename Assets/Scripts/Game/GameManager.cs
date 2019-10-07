@@ -62,6 +62,10 @@ namespace LDJam45.Game
 			{
 				OnStageChange?.Invoke(this, GameState.BattleBegin);
 			}
+			else
+			{
+				ChangeState(GameState.Movable);
+			}
 		}
 	}
 }

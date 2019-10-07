@@ -61,7 +61,7 @@ namespace LDJam45.Game
 			HandArea.GetComponent<HandAreaManager>().Sort();
 		}
 
-		private void OnAttack(object sender, Action callBack)
+		private void OnAttack(object sender, AttackArgs attackArgs)
 		{
 			Debug.LogWarning($"[{this.GetType().Name}] OnAttack!");
 
@@ -73,7 +73,10 @@ namespace LDJam45.Game
 			var sequence = DOTween.Sequence();
 			sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 1 * dir, duration)
 			.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 1 * dir, duration)));
-			sequence.OnComplete(() => callBack());
+
+			attackArgs.Receiver.GetDamage(attackArgs.CardData.Amount);
+			
+			sequence.OnComplete(() => attackArgs.Callback());
 		}
 
 		private void OnUnitDied(object sender, EventArgs e)

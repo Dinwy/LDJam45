@@ -14,6 +14,7 @@ namespace LDJam45.Game
 		public AttackType AttackType;
 		public int Amount;
 		public sbyte Priority;
+		public CardAnimation CardAnimation;
 		public CardClass CardClass;
 		public Guid OwnerID { get; set; }
 	}
