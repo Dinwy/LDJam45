@@ -42,6 +42,10 @@ namespace LDJam45.Game
 					}
 
 					// Force changing state
+					gameManager.ChangeState(GameState.CardDrawPhase);
+					break;
+				case GameState.CardDrawPhase:
+					gameManager.UserManager.PlayerUnitManager.InitialPhase();
 					gameManager.ChangeState(GameState.PlayerTurnStart);
 					break;
 				case GameState.PlayerTurnStart:

@@ -87,7 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b17d040465dee54ca9a1c43c4d235c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogText: {fileID: 0}
+  CenterPanel: {fileID: 0}
+  DialogText: {fileID: 2590936273966594909}
+  MoveNextRoom: {fileID: 0}
 --- !u!1 &2590936273966594899
 GameObject:
   m_ObjectHideFlags: 0

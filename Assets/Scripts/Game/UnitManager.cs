@@ -58,6 +58,21 @@ namespace LDJam45.Game
 			OnCardAddedToDeck?.Invoke(this, card);
 		}
 
+		public void InitialPhase()
+		{
+			foreach (var card in Hands)
+			{
+				Deck.Push(card);
+			}
+
+			Hands.Clear();
+
+			for (int i = 0; i < 2; i++)
+			{
+				Draw();
+			}
+		}
+
 		public void Draw()
 		{
 			// Draw default card when nothing on your deck

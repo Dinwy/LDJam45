@@ -3097,6 +3097,11 @@ PrefabInstance:
       propertyPath: CenterPanel
       value: 
       objectReference: {fileID: 1724707705}
+    - target: {fileID: 2590936273321056722, guid: 3dbc2463545907f4bbfd8f93d2e08e9b,
+        type: 3}
+      propertyPath: MoveNextRoom
+      value: 
+      objectReference: {fileID: 748420999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dbc2463545907f4bbfd8f93d2e08e9b, type: 3}
 --- !u!1001 &8051977145189880362

@@ -42,7 +42,7 @@ namespace LDJam45.Game
 					gameManager.CheckRoom();
 					break;
 				case GameState.BattleBegin:
-					UpdateDialog("Enemy exsits in the room! Battle begins");
+					UpdateDialog($"Enemy exsits in the room! Battle begins\nDrag and drop your card to the enemy!");
 					break;
 				case GameState.BattleFinished:
 					UpdateDialog("Enemy exsits in the room! Battle Finished!");
