@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System;
+using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +41,9 @@ namespace LDJam45.Game
 			RegisterEvnets();
 		}
 
+		private float blinkDuration = 1f;
+		private Tween blinkTween;
+
 		private void OnStageChange(object sender, GameState gs)
 		{
 			switch (gs)
@@ -56,6 +61,17 @@ namespace LDJam45.Game
 					break;
 				case GameState.InitializeFinished:
 					Setup();
+					break;
+				case GameState.Movable:
+					blinkTween = MoveNext.GetComponent<Image>().DOFade(0.0f, blinkDuration).SetEase(Ease.InCubic).SetLoops(2, LoopType.Yoyo);
+					blinkTween.OnComplete(() => blinkTween.Restart());
+					break;
+				case GameState.MoveToRoom:
+					if (blinkTween != null)
+					{
+						blinkTween.OnComplete(null);
+						blinkTween.SetAutoKill(true);
+					}
 					break;
 				default:
 					break;
