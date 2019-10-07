@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 225459985}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -865,6 +865,9 @@ MonoBehaviour:
   AudioSource: {fileID: 292996661}
   AmbientTrack: {fileID: 8300000, guid: af55498647dee3343b5c53e48747fb02, type: 3}
   BattleTrack: {fileID: 8300000, guid: fbcb9ebc0cb47ca4c9af21d36caac6e3, type: 3}
+  WinTrack: {fileID: 8300000, guid: 3c305f97dc2fca74eb8b223e67a6453c, type: 3}
+  LoseTrack: {fileID: 8300000, guid: a349460b5a3390d48ab5a0f453bc3601, type: 3}
+  HitTrack: {fileID: 8300000, guid: 7eac2e104d633384f8ade73946b20fa7, type: 3}
 --- !u!114 &292996663
 MonoBehaviour:
   m_ObjectHideFlags: 0

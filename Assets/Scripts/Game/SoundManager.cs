@@ -17,6 +17,9 @@ namespace LDJam45.Game
 		public AudioSource AudioSource;
 		public AudioClip AmbientTrack;
 		public AudioClip BattleTrack;
+		public AudioClip WinTrack;
+		public AudioClip LoseTrack;
+		public AudioClip HitTrack;
 
 		void Start()
 		{
@@ -54,6 +57,7 @@ namespace LDJam45.Game
 				case GameState.EnemyTurnEnd:
 					break;
 				case GameState.BattleFinished:
+					AudioSource.PlayOneShot(WinTrack);
 					SwitchTrack(AmbientTrack);
 					break;
 				case GameState.GameOver:

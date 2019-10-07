@@ -22,9 +22,12 @@ namespace LDJam45.Game
 		private GameObject HandArea { get; set; }
 		private GameManager gameManager;
 
+		private SoundManager soundManager;
+
 		void Start()
 		{
 			gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+			soundManager = gameManager.gameObject.GetComponent<SoundManager>();
 		}
 
 		public void Setup(UnitManager um)
@@ -117,6 +120,8 @@ namespace LDJam45.Game
 			{
 				case CardAnimation.NormalAttack:
 				default:
+					soundManager.AudioSource.PlayOneShot(soundManager.HitTrack);
+
 					sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 2 * dir.x, duration)
 					.OnComplete(() => transform.DOLocalMoveX(transform.localPosition.x - 2 * dir.x, duration)));
 					break;

@@ -21,10 +21,13 @@ namespace LDJam45.Game
 		public List<GameObject> EnemyUnits;
 		private GameManager gameManager { get; set; }
 
+		private SoundManager soundManager;
+
 		public void Setup(GameManager gm)
 		{
 			gameManager = gm;
 			RegisterEvnets();
+			soundManager = gameManager.gameObject.GetComponent<SoundManager>();
 		}
 
 		private void OnStageChange(object sender, GameState gs)
@@ -79,6 +82,7 @@ namespace LDJam45.Game
 				case GameState.EnemyTurnEnd:
 					if (gameManager.UserManager.PlayerUnitManager.IsDead)
 					{
+						soundManager.AudioSource.PlayOneShot(soundManager.LoseTrack);
 						gameManager.ChangeState(GameState.GameOver);
 					}
 					else
@@ -88,6 +92,7 @@ namespace LDJam45.Game
 					break;
 				case GameState.BattleFinished:
 					Debug.Log("BattleFinished");
+					soundManager.AudioSource.PlayOneShot(soundManager.WinTrack);
 
 					if (gameManager.MapManager.IsLastRoom())
 					{

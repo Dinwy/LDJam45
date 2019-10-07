@@ -17,7 +17,7 @@ namespace LDJam45
 			DOTween.To(() => Canvas.GetComponent<CanvasGroup>().alpha, x => Canvas.GetComponent<CanvasGroup>().alpha = x, 1, 3f).SetEase(Ease.InCubic);
 			StartButton.onClick.AddListener(StartGame);
 			var canvasGroup = StartButton.GetComponent<CanvasGroup>();
-			DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 1f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo);
+			DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 2f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo);
 		}
 
 		void OnDestroy()
