@@ -22,12 +22,16 @@ namespace LDJam45.Game
 		private GameManager gameManager;
 		private Renderer Renderer;
 
+		// Temp
+		private GameObject handArea;
+
 		void Start()
 		{
 			originPos = transform.localPosition;
 			gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 			MakeItBillboard();
 			Renderer = GetComponent<Renderer>();
+			handArea = GameObject.Find("HandArea");
 		}
 
 		void OnMouseDown()
@@ -40,6 +44,11 @@ namespace LDJam45.Game
 
 		void OnMouseDrag()
 		{
+			var ownerUnit = GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>();
+
+			if (gameManager.GameState != GameState.PlayerTurnStart) return;
+			if (ownerUnit.isInAction) return;
+
 			Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 			Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
 			transform.position = cursorPosition;
@@ -92,6 +101,8 @@ namespace LDJam45.Game
 			{
 				Renderer.material.mainTexture = Card.Artwork.texture;
 				gameObject.transform.localPosition = originPos;
+				handArea.GetComponent<HandAreaManager>().Sort();
+
 				return;
 			}
 
@@ -102,8 +113,7 @@ namespace LDJam45.Game
 					Debug.Log("Cannot damage myself");
 					Renderer.material.mainTexture = Card.Artwork.texture;
 
-					GameObject.Find("HandArea").GetComponent<HandAreaManager>().Sort();
-
+					handArea.GetComponent<HandAreaManager>().Sort();
 					return;
 				}
 			}
@@ -112,7 +122,10 @@ namespace LDJam45.Game
 			if (ownerUnit.isInAction) return;
 			ownerUnit.isInAction = true;
 
-			GameObject.Find(Card.OwnerID.ToString()).GetComponent<UnitManager>().UseCard(Guid.Parse(TargetGuid), Card, () =>
+			gameObject.GetComponent<MeshRenderer>().enabled = false;
+			handArea.GetComponent<HandAreaManager>().Sort();
+
+			ownerUnit.UseCard(Guid.Parse(TargetGuid), Card, () =>
 			{
 				gameManager.ChangeState(GameState.PlayerTurnEnd);
 				Destroy(gameObject);

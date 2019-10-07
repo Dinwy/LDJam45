@@ -513,7 +513,7 @@ MonoBehaviour:
   IntroText: {fileID: 1727573894}
   textMessage: {fileID: 886030959}
   MainCamera: {fileID: 1370951195}
-  MoveNext: {fileID: 0}
+  MoveNext: {fileID: 748420999}
   SceneType: 0
   CharacterSprite: {fileID: 580123050}
 --- !u!82 &292996661

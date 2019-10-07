@@ -30,9 +30,17 @@ namespace LDJam45.Game
 		private bool initialized = false;
 		private bool animating = false;
 
+		// Temp
+		private GameObject handArea;
+
 		void Awake()
 		{
 			BlackPanel.SetActive(true);
+		}
+
+		void Start()
+		{
+			handArea = GameObject.Find("HandArea");
 		}
 
 		public void Setup(GameManager gm)
@@ -61,6 +69,8 @@ namespace LDJam45.Game
 					break;
 				case GameState.InitializeFinished:
 					Setup();
+					break;
+				case GameState.PlayerTurnEnd:
 					break;
 				case GameState.Movable:
 					blinkTween = MoveNext.GetComponent<Image>().DOFade(0.0f, blinkDuration).SetEase(Ease.InCubic).SetLoops(2, LoopType.Yoyo);
