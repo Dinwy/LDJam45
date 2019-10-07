@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cyclops
   m_EditorClassIdentifier: 
   Name: Cyclops
-  HP: 50
+  HP: 20
   Damage: 10
   Description: 
   Artwork: {fileID: 21300000, guid: 4e64db93020eb1b448875f81280ca14e, type: 3}
